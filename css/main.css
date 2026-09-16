@@ -1,0 +1,447 @@
+/* ==========================================================================
+   منصة «مُدار» - نظام التصميم والهوية البصرية المعتمدة
+   مبني بالكامل وفق لوحة الألوان الرصينة الفاخرة (Dark Slate Blue Palette)
+   وتصميم البروتوتايب الداكن عالي الدقة (Executive Decision-Making Dashboard)
+   لغة عربية بحتة 100% - خالية من أي مزيج لغوي أو إيموجي
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+
+:root {
+  /* لوحة الألوان الأساسية المستخرجة من الصورة */
+  --slate-dark-blue: #285172;       /* اللون الرئيسي - Dark Slate Blue */
+  --slate-dark-blue-hover: #346790; /* درجة الحوم والتفاعل */
+  --slate-dark-blue-subtle: rgba(40, 81, 114, 0.22);
+
+  --steel-light: #E5EAEE;           /* لون النصوص والأرقام الرئيسية - Light Steel Blue */
+  --slate-gray: #8FA0AA;            /* لون النصوص المساعدة والحدود - Light Slate Gray */
+  --steel-medium: #B3C4CC;          /* لون الفواصل والشارات النشطة - Medium Steel Blue */
+  --dim-gray: #78656B;              /* لون التمييز الدافئ والمؤشرات الثانوية - Dim Gray */
+  --dim-gray-subtle: rgba(120, 101, 107, 0.25);
+
+  /* نظام أسطح وخلفيات الداشبورد الداكن الفخم */
+  --bg-deep: #0A111A;               /* الخلفية الشاملة للواجهة */
+  --bg-surface: #111D2A;            /* خلفية الحاويات والبطاقات الرئيسية */
+  --bg-surface-elevated: #162536;   /* خلفية الصفوف والعناصر المرتفعة */
+  --bg-surface-hover: #1C2E42;      /* خلفية التحديد والحوم */
+  --bg-input: #142231;              /* خلفية حقول الإدخال */
+
+  /* الحدود والظلال الهندسية الدقيقة */
+  --border-subtle: rgba(143, 160, 170, 0.16);
+  --border-medium: rgba(179, 196, 204, 0.28);
+  --border-active: #285172;
+  --border-focus: #B3C4CC;
+
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 14px 34px rgba(0, 0, 0, 0.45);
+  --shadow-active-tab: 0 0 16px rgba(40, 81, 114, 0.4);
+
+  /* الخطوط القياسية */
+  --font-arabic: 'Cairo', 'IBM Plex Sans Arabic', -apple-system, sans-serif;
+  --font-numbers: 'Outfit', 'Cairo', sans-serif;
+
+  /* أنصاف الأقطار والانتقالات */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  --transition-fast: 0.18s ease;
+  --transition-normal: 0.28s ease;
+}
+
+/* إعادة الضبط والقواعد العامة */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  direction: rtl;
+  text-align: right;
+  font-size: 16px;
+  scroll-behavior: smooth;
+  background-color: var(--bg-deep);
+}
+
+body {
+  font-family: var(--font-arabic);
+  background-color: var(--bg-deep);
+  color: var(--steel-light);
+  min-height: 100vh;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* شريط تمرير هادئ واحترافي */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-surface-elevated);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--slate-dark-blue);
+}
+
+/* الحاوية الرئيسية للتطبيق */
+.app-wrapper {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3.5rem;
+}
+
+/* ==========================================================================
+   الهيدر العلوي المماثل لبروتوتايب الصورة الأولى (Top Bar)
+   ========================================================================== */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 1.5rem;
+}
+
+.brand-area {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: var(--steel-light);
+}
+
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  background: var(--slate-dark-blue);
+  border: 1px solid var(--steel-medium);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--steel-light);
+  box-shadow: 0 2px 8px rgba(40, 81, 114, 0.35);
+}
+
+.brand-text-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-size: 1.65rem;
+  font-weight: 900;
+  line-height: 1.15;
+  color: var(--steel-light);
+  letter-spacing: -0.5px;
+}
+
+.brand-subtitle {
+  font-size: 0.78rem;
+  color: var(--slate-gray);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* أدوات التحكم العلوية بالهيدر */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.9rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  color: var(--steel-medium);
+  font-weight: 600;
+}
+
+.status-dot-indicator {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--steel-medium);
+}
+
+.header-icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--steel-medium);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.header-icon-btn:hover {
+  background: var(--bg-surface-elevated);
+  border-color: var(--slate-dark-blue);
+  color: var(--steel-light);
+}
+
+/* ==========================================================================
+   شريط المسار السداسي/المجزأ المتصل (Continuous Stepper Navigation)
+   مطابق تماماً لنمط البروتوتايب في الصورة الأولى
+   ========================================================================== */
+.stepper-container {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.4rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+  overflow-x: auto;
+}
+
+.stepper-nav {
+  display: flex;
+  align-items: stretch;
+  min-width: 980px;
+  position: relative;
+  gap: 4px;
+}
+
+.stepper-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.8rem 0.6rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--slate-gray);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  white-space: nowrap;
+  position: relative;
+  text-align: center;
+}
+
+.stepper-tab:hover:not(:disabled) {
+  background: var(--bg-surface-hover);
+  color: var(--steel-light);
+  border-color: var(--border-subtle);
+}
+
+.stepper-tab-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-xs);
+  background: rgba(143, 160, 170, 0.15);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--steel-medium);
+  font-family: var(--font-numbers);
+}
+
+.stepper-tab-text {
+  transition: var(--transition-fast);
+}
+
+/* الحالة النشطة (Active Stage) - كما في بروتوتايب الصورة الأولى */
+.stepper-tab.active {
+  background: var(--slate-dark-blue);
+  color: var(--steel-light);
+  border-color: var(--steel-medium);
+  box-shadow: var(--shadow-active-tab);
+  font-weight: 700;
+}
+
+.stepper-tab.active .stepper-tab-num {
+  background: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+}
+
+/* الحالة المكتملة */
+.stepper-tab.completed {
+  background: var(--bg-surface);
+  color: var(--steel-medium);
+  border-color: var(--border-subtle);
+}
+
+.stepper-tab.completed .stepper-tab-num {
+  background: rgba(40, 81, 114, 0.4);
+  color: var(--steel-light);
+}
+
+/* ==========================================================================
+   المراحل والتنقل الداخلي (Stages Containers)
+   ========================================================================== */
+.stage-section {
+  display: none;
+  animation: stageEnter 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.stage-section.active {
+  display: block;
+}
+
+@keyframes stageEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ترويسة كل مرحلة */
+.section-header {
+  margin-bottom: 1.8rem;
+}
+
+.section-title {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--steel-light);
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-subtitle {
+  font-size: 0.92rem;
+  color: var(--slate-gray);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   الأزرار وعناصر التحكم المعتمدة
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1.65rem;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: var(--transition-fast);
+  text-decoration: none;
+  line-height: 1.2;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-primary {
+  background-color: var(--slate-dark-blue);
+  color: var(--steel-light);
+  border-color: rgba(179, 196, 204, 0.3);
+  box-shadow: 0 2px 10px rgba(40, 81, 114, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--slate-dark-blue-hover);
+  border-color: var(--steel-medium);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: var(--bg-surface-elevated);
+  color: var(--steel-medium);
+  border-color: var(--border-subtle);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--bg-surface-hover);
+  color: var(--steel-light);
+  border-color: var(--border-medium);
+}
+
+.btn-accent {
+  background-color: var(--dim-gray);
+  color: var(--steel-light);
+  border-color: rgba(229, 234, 238, 0.2);
+}
+
+.btn-accent:hover:not(:disabled) {
+  background-color: #8c767d;
+  color: #FFFFFF;
+}
+
+/* شريط التنقل السفلي الثابت بين المراحل */
+.navigation-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* التذييل وإخلاء المسؤولية */
+.legal-disclaimer {
+  margin-top: 3rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  color: var(--slate-gray);
+  line-height: 1.7;
+  text-align: justify;
+}
+
+.legal-disclaimer strong {
+  color: var(--steel-medium);
+  font-weight: 700;
+}
+
+/* الأرقام الموحدة */
+.num-font {
+  font-family: var(--font-numbers);
+  font-feature-settings: "tnum";
+}
+
+/* التجاوب مع مختلف الشاشات */
+@media (max-width: 992px) {
+  .app-wrapper {
+    padding: 0 1rem 3rem;
+  }
+  .site-header {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}

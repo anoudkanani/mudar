@@ -1,0 +1,1078 @@
+/* ==========================================================================
+   منصة «مُدار» - مكونات الواجهة التفاعلية (UI Components System)
+   مصممة وفق هوية البروتوتايب الداكن وباليت الصورة الثانية
+   Dark Slate Blue (#285172) | Light Steel Blue (#E5EAEE) | Slate Gray (#8FA0AA)
+   Medium Steel Blue (#B3C4CC) | Dim Gray (#78656B)
+   لغة عربية بحتة وبدون إيموجي أو عناصر مشتتة
+   ========================================================================== */
+
+/* ==========================================================================
+   المرحلة 1: لاندنق بيج بنظام السلايدات التفاعلية (مستوحاة من dhamanah.com)
+   ========================================================================== */
+.landing-slider-container {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2rem;
+}
+
+.slider-viewport {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  overflow: hidden;
+}
+
+.slider-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.landing-slide {
+  min-width: 100%;
+  flex-shrink: 0;
+  padding: 4rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: right;
+  position: relative;
+  background: linear-gradient(135deg, rgba(18, 29, 42, 0.98) 0%, rgba(14, 22, 33, 0.96) 100%);
+}
+
+.slide-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(40, 81, 114, 0.35);
+  border: 1px solid var(--border-medium);
+  color: var(--steel-light);
+  padding: 0.35rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.slide-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1.25;
+  color: var(--steel-light);
+  margin-bottom: 1.2rem;
+  max-width: 880px;
+}
+
+.slide-title span {
+  color: var(--steel-medium);
+}
+
+.slide-desc {
+  font-size: 1.1rem;
+  color: var(--slate-gray);
+  max-width: 780px;
+  line-height: 1.8;
+  margin-bottom: 2.2rem;
+}
+
+/* شبكة ميزات الشريحة */
+.slide-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+
+.slide-pillar-card {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.4rem;
+  transition: var(--transition-fast);
+}
+
+.slide-pillar-card:hover {
+  border-color: var(--border-medium);
+  background: var(--bg-surface-hover);
+}
+
+.pillar-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--steel-light);
+  margin-bottom: 0.4rem;
+}
+
+.pillar-bullet {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--slate-dark-blue);
+  border: 1px solid var(--steel-medium);
+}
+
+.pillar-text {
+  font-size: 0.85rem;
+  color: var(--slate-gray);
+  line-height: 1.6;
+}
+
+.slide-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.slide-note {
+  font-size: 0.85rem;
+  color: var(--slate-gray);
+}
+
+/* أدوات التنقل في السلايدر (Arrows & Bullets) */
+.slider-arrow-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background: rgba(18, 29, 42, 0.85);
+  border: 1px solid var(--border-medium);
+  color: var(--steel-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: var(--transition-fast);
+}
+
+.slider-arrow-btn:hover {
+  background: var(--slate-dark-blue);
+  border-color: var(--steel-light);
+  color: #FFFFFF;
+}
+
+.slider-arrow-btn.prev {
+  right: 1.25rem;
+}
+
+.slider-arrow-btn.next {
+  left: 1.25rem;
+}
+
+.slider-bullets-bar {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 10;
+}
+
+.slider-bullet {
+  width: 28px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: rgba(143, 160, 170, 0.35);
+  cursor: pointer;
+  border: none;
+  transition: var(--transition-fast);
+}
+
+.slider-bullet.active {
+  background: var(--slate-dark-blue);
+  width: 46px;
+  border: 1px solid var(--steel-medium);
+}
+
+/* ==========================================================================
+   المرحلة 2: اختيار النشاط التجاري (Activity Selection)
+   ========================================================================== */
+.activity-filters-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.search-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon-svg {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--slate-gray);
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.95rem 3.2rem 0.95rem 1.25rem;
+  color: var(--steel-light);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: var(--transition-fast);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--slate-dark-blue);
+  background: var(--bg-surface-elevated);
+  box-shadow: 0 0 0 3px var(--slate-dark-blue-subtle);
+}
+
+.category-pills {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.category-pill {
+  padding: 0.55rem 1.25rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--slate-gray);
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.category-pill:hover {
+  background: var(--bg-surface-elevated);
+  color: var(--steel-light);
+  border-color: var(--border-medium);
+}
+
+.category-pill.active {
+  background: var(--slate-dark-blue);
+  color: var(--steel-light);
+  border-color: var(--steel-medium);
+  font-weight: 700;
+}
+
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.4rem;
+}
+
+.activity-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.6rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.activity-card:hover {
+  border-color: var(--border-medium);
+  background: var(--bg-surface-elevated);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.activity-card.selected {
+  border-color: var(--steel-medium);
+  background: var(--bg-surface-elevated);
+  box-shadow: 0 0 0 2px var(--slate-dark-blue), var(--shadow-md);
+}
+
+.activity-card-header {
+  margin-bottom: 0.8rem;
+}
+
+.activity-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--steel-light);
+  margin-bottom: 0.4rem;
+}
+
+.activity-desc {
+  font-size: 0.88rem;
+  color: var(--slate-gray);
+  line-height: 1.6;
+}
+
+.activity-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  margin-top: 1.2rem;
+  font-size: 0.82rem;
+  color: var(--steel-medium);
+}
+
+.activity-tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-top: 0.8rem;
+}
+
+.activity-tag-badge {
+  background: rgba(143, 160, 170, 0.12);
+  color: var(--slate-gray);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-xs);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   المرحلة 3: اختيار المدينة والموقع المناسب (بدون قوائم منسدلة)
+   ========================================================================== */
+.location-selection-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.location-form-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--steel-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-label small {
+  font-size: 0.8rem;
+  color: var(--slate-gray);
+  font-weight: 400;
+}
+
+/* بطاقات اختيار المدن */
+.cities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 0.65rem;
+}
+
+.city-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 0.6rem;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.city-card:hover {
+  background: var(--bg-surface-elevated);
+  border-color: var(--border-medium);
+}
+
+.city-card.selected {
+  background: var(--slate-dark-blue);
+  border-color: var(--steel-medium);
+  color: #FFFFFF;
+}
+
+.city-card-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.city-card-region {
+  font-size: 0.75rem;
+  color: var(--slate-gray);
+  margin-top: 3px;
+}
+
+.city-card.selected .city-card-region {
+  color: var(--steel-light);
+}
+
+/* بديل القائمة المنسدلة: شبكة خيارات وشارات الأحياء القابلة للاختيار الفوري */
+.district-pills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.65rem;
+  max-height: 220px;
+  overflow-y: auto;
+  padding: 0.35rem 0.1rem;
+}
+
+.district-pill {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.85rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  text-align: right;
+}
+
+.district-pill:hover {
+  background: var(--bg-surface-elevated);
+  border-color: var(--border-medium);
+}
+
+.district-pill.selected {
+  background: var(--slate-dark-blue);
+  border-color: var(--steel-medium);
+}
+
+.district-pill-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--steel-light);
+}
+
+.district-pill-price {
+  font-size: 0.75rem;
+  color: var(--slate-gray);
+  font-family: var(--font-numbers);
+}
+
+.district-pill.selected .district-pill-name,
+.district-pill.selected .district-pill-price {
+  color: #FFFFFF;
+}
+
+/* خيارات نوع الموقع التجاري */
+.commercial-zones-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.zone-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.zone-card:hover {
+  background: var(--bg-surface-elevated);
+  border-color: var(--border-medium);
+}
+
+.zone-card.selected {
+  background: var(--bg-surface-elevated);
+  border-color: var(--slate-dark-blue);
+  box-shadow: 0 0 0 2px var(--slate-dark-blue);
+}
+
+.zone-card-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--steel-light);
+  margin-bottom: 0.25rem;
+}
+
+.zone-card-desc {
+  font-size: 0.78rem;
+  color: var(--slate-gray);
+  line-height: 1.5;
+}
+
+/* حقل إدخال المساحة */
+.custom-input-group {
+  display: flex;
+  align-items: center;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: var(--transition-fast);
+}
+
+.custom-input-group:focus-within {
+  border-color: var(--slate-dark-blue);
+  box-shadow: 0 0 0 3px var(--slate-dark-blue-subtle);
+}
+
+.money-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 0.85rem 1rem;
+  color: var(--steel-light);
+  font-family: var(--font-numbers);
+  font-size: 1.05rem;
+  font-weight: 700;
+  direction: ltr;
+  text-align: right;
+}
+
+.money-input:focus {
+  outline: none;
+}
+
+.currency-suffix {
+  padding: 0.85rem 1.1rem;
+  background: var(--bg-surface-elevated);
+  color: var(--slate-gray);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-right: 1px solid var(--border-subtle);
+}
+
+/* بطاقة معاينة الموقع */
+.location-preview-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.preview-details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.preview-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.preview-detail-row span {
+  color: var(--slate-gray);
+}
+
+.preview-detail-row strong {
+  color: var(--steel-light);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   المرحلة 4: تحليل الموقع والنشاط (Fit Analysis)
+   ========================================================================== */
+.analysis-dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+}
+
+.analysis-score-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2.25rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fit-circle-meter {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 6px solid var(--slate-dark-blue);
+  background: var(--bg-surface-elevated);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 20px var(--slate-dark-blue-subtle);
+}
+
+.fit-percent {
+  font-size: 2.4rem;
+  font-weight: 900;
+  font-family: var(--font-numbers);
+  color: var(--steel-light);
+  line-height: 1;
+}
+
+.fit-text {
+  font-size: 0.8rem;
+  color: var(--steel-medium);
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.metrics-summary-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.metric-strip-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  transition: var(--transition-fast);
+}
+
+.metric-strip-body {
+  flex: 1;
+}
+
+.metric-strip-title {
+  font-size: 0.85rem;
+  color: var(--slate-gray);
+  margin-bottom: 0.25rem;
+}
+
+.metric-strip-value {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--steel-light);
+}
+
+.fit-factors-box {
+  grid-column: 1 / -1;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+}
+
+.factors-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1.25rem;
+}
+
+.factor-column {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem;
+}
+
+.factor-col-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--steel-light);
+}
+
+.factor-items-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.factor-items-list li {
+  font-size: 0.88rem;
+  color: var(--slate-gray);
+  line-height: 1.6;
+  position: relative;
+  padding-right: 1.25rem;
+}
+
+.factor-items-list li::before {
+  content: '•';
+  position: absolute;
+  right: 0;
+  color: var(--slate-dark-blue);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   المرحلة 5: حساب الدخل والتكاليف (Financial Simulator)
+   مطابقة لأسلوب البروتوتايب في الصورة الأولى
+   ========================================================================== */
+.financial-tabs-nav {
+  display: flex;
+  gap: 0.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem;
+  margin-bottom: 1.5rem;
+}
+
+.tab-nav-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-xs);
+  color: var(--slate-gray);
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-align: center;
+}
+
+.tab-nav-btn:hover {
+  background: var(--bg-surface-elevated);
+  color: var(--steel-light);
+}
+
+.tab-nav-btn.active {
+  background: var(--slate-dark-blue);
+  color: #FFFFFF;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(40, 81, 114, 0.4);
+}
+
+.financial-tab-pane {
+  display: none;
+}
+
+.financial-tab-pane.active {
+  display: block;
+  animation: stageEnter 0.25s ease forwards;
+}
+
+.inputs-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.input-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1.4rem;
+}
+
+.input-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+}
+
+.input-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--steel-light);
+}
+
+.benchmark-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  background: rgba(143, 160, 170, 0.15);
+  color: var(--steel-medium);
+  border-radius: var(--radius-xs);
+}
+
+.range-slider-wrap {
+  margin-top: 1rem;
+}
+
+.range-slider {
+  width: 100%;
+  accent-color: var(--slate-dark-blue);
+  cursor: pointer;
+}
+
+/* شريط الملخص المالي الحي */
+.live-financial-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--slate-dark-blue);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.5rem;
+  margin-top: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.live-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.live-stat-label {
+  font-size: 0.82rem;
+  color: var(--slate-gray);
+}
+
+.live-stat-value {
+  font-size: 1.25rem;
+  font-weight: 900;
+  font-family: var(--font-numbers);
+  color: var(--steel-light);
+}
+
+.reset-benchmarks-btn {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--slate-gray);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.85rem;
+  transition: var(--transition-fast);
+}
+
+.reset-benchmarks-btn:hover {
+  background: var(--bg-surface-elevated);
+  color: var(--steel-light);
+  border-color: var(--border-medium);
+}
+
+/* ==========================================================================
+   المرحلة 6: مؤشر نجاح المشروع والمخاطر (Success Gauge & Risks)
+   ========================================================================== */
+.score-risks-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 2rem;
+}
+
+.gauge-main-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.svg-gauge-box {
+  width: 220px;
+  position: relative;
+  margin: 0 auto 1.5rem;
+}
+
+.svg-gauge-box svg {
+  width: 100%;
+  display: block;
+}
+
+.gauge-track {
+  fill: none;
+  stroke: var(--bg-surface-elevated);
+  stroke-width: 16;
+  stroke-linecap: round;
+}
+
+.gauge-progress {
+  fill: none;
+  stroke: var(--slate-dark-blue);
+  stroke-width: 16;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.gauge-center-text {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.gauge-score-number {
+  font-size: 2.75rem;
+  font-weight: 900;
+  font-family: var(--font-numbers);
+  color: var(--steel-light);
+  line-height: 1;
+}
+
+.gauge-score-total {
+  font-size: 1.1rem;
+  color: var(--slate-gray);
+  font-family: var(--font-numbers);
+}
+
+.gauge-status-badge {
+  padding: 0.45rem 1.4rem;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: var(--slate-dark-blue);
+  color: #FFFFFF;
+}
+
+.gauge-summary-text {
+  font-size: 0.92rem;
+  color: var(--slate-gray);
+  line-height: 1.7;
+}
+
+/* بطاقات المخاطر */
+.risks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.risk-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.5rem;
+  border-right: 4px solid var(--slate-dark-blue);
+}
+
+.risk-card.risk-high {
+  border-right-color: var(--dim-gray);
+}
+
+.risk-card.risk-medium {
+  border-right-color: var(--slate-gray);
+}
+
+.risk-card.risk-low {
+  border-right-color: var(--slate-dark-blue);
+}
+
+.risk-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.risk-card-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--steel-light);
+}
+
+.risk-level-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-xs);
+  background: rgba(143, 160, 170, 0.15);
+  color: var(--steel-medium);
+}
+
+.risk-card-detail {
+  font-size: 0.85rem;
+  color: var(--slate-gray);
+  line-height: 1.6;
+}
+
+/* اختبار حساسية المبيعات */
+.sensitivity-box {
+  grid-column: 1 / -1;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.sensitivity-options {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.sensitivity-btn {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--slate-gray);
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.sensitivity-btn:hover {
+  background: var(--bg-surface-hover);
+  color: var(--steel-light);
+}
+
+.sensitivity-btn.active {
+  background: var(--slate-dark-blue);
+  color: #FFFFFF;
+  border-color: var(--steel-medium);
+}
+
+/* التجاوب */
+@media (max-width: 992px) {
+  .location-selection-layout,
+  .analysis-dashboard,
+  .score-risks-layout,
+  .factors-split {
+    grid-template-columns: 1fr;
+  }
+  .live-financial-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+  .inputs-grid-2col {
+    grid-template-columns: 1fr;
+  }
+}
