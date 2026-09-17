@@ -5,41 +5,60 @@
    لغة عربية بحتة 100% - خالية من أي مزيج لغوي أو إيموجي
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+
+/* خط عربي مزخرف مخصص لعنوان الموقع فقط */
+@font-face {
+  font-family: 'MadarDecorative';
+  src: url('../fonts/mudar-decorative.woff2') format('woff2');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
-  /* لوحة الألوان الأساسية المستخرجة من الصورة */
+  /* لوحة الألوان الأساسية المعتمدة لـ «مُدار» - النمط الفاتح التنفيذي الفاخر (Executive Light Mode) */
   --slate-dark-blue: #285172;       /* اللون الرئيسي - Dark Slate Blue */
-  --slate-dark-blue-hover: #346790; /* درجة الحوم والتفاعل */
-  --slate-dark-blue-subtle: rgba(40, 81, 114, 0.22);
+  --slate-dark-blue-hover: #1C3E5A; /* درجة الحوم والتفاعل */
+  --slate-dark-blue-subtle: rgba(40, 81, 114, 0.08);
 
-  --steel-light: #E5EAEE;           /* لون النصوص والأرقام الرئيسية - Light Steel Blue */
-  --slate-gray: #8FA0AA;            /* لون النصوص المساعدة والحدود - Light Slate Gray */
-  --steel-medium: #B3C4CC;          /* لون الفواصل والشارات النشطة - Medium Steel Blue */
-  --dim-gray: #78656B;              /* لون التمييز الدافئ والمؤشرات الثانوية - Dim Gray */
-  --dim-gray-subtle: rgba(120, 101, 107, 0.25);
+  /* ألوان النصوص والتباين العالي (High Contrast Text) */
+  --steel-light: #162636;           /* لون النصوص والأرقام والعناوين الرئيسية - Deep Slate Blue */
+  --slate-gray: #556B7C;            /* لون النصوص المساعدة والوصف - Slate Gray */
+  --steel-medium: #285172;          /* لون الفواصل والشارات النشطة */
+  --dim-gray: #78656B;              /* لون التمييز الدافئ والمؤشرات الثانوية */
+  --dim-gray-subtle: rgba(120, 101, 107, 0.12);
 
-  /* نظام أسطح وخلفيات الداشبورد الداكن الفخم */
-  --bg-deep: #0A111A;               /* الخلفية الشاملة للواجهة */
-  --bg-surface: #111D2A;            /* خلفية الحاويات والبطاقات الرئيسية */
-  --bg-surface-elevated: #162536;   /* خلفية الصفوف والعناصر المرتفعة */
-  --bg-surface-hover: #1C2E42;      /* خلفية التحديد والحوم */
-  --bg-input: #142231;              /* خلفية حقول الإدخال */
+  /* اللون الزيتي المتناسق الفخم (Harmonious Executive Olive) */
+  --olive-accent: #415C47;          /* اللون الزيتي الأساسي المتناسق */
+  --olive-dark: #2F4534;            /* درجة زيتية داكنة */
+  --olive-light: #5A7B61;           /* درجة زيتية فاتحة */
+  --olive-subtle: rgba(65, 92, 71, 0.1);
+  --olive-border: rgba(65, 92, 71, 0.28);
+  --olive-glow: rgba(65, 92, 71, 0.25);
 
-  /* الحدود والظلال الهندسية الدقيقة */
-  --border-subtle: rgba(143, 160, 170, 0.16);
-  --border-medium: rgba(179, 196, 204, 0.28);
+  /* نظام أسطح وخلفيات الواجهة الفاتحة (Pristine Light Surfaces) */
+  --bg-deep: #F3F6F9;               /* الخلفية العامة الهادئة (Light Steel Slate) */
+  --bg-surface: #FFFFFF;            /* خلفية البطاقات والحاويات الرئيسية */
+  --bg-surface-elevated: #F8FAFC;   /* خلفية العناصر والصفوف المرتفعة */
+  --bg-surface-hover: #EDF3F7;      /* خلفية التحديد والحوم */
+  --bg-input: #FFFFFF;              /* خلفية حقول الإدخال */
+
+  /* الحدود والظلال الهندسية الدقيقة النظيفة */
+  --border-subtle: #DDE5EC;
+  --border-medium: #B3C4CC;
   --border-active: #285172;
-  --border-focus: #B3C4CC;
+  --border-focus: #285172;
 
-  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.25);
-  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0 14px 34px rgba(0, 0, 0, 0.45);
-  --shadow-active-tab: 0 0 16px rgba(40, 81, 114, 0.4);
+  --shadow-sm: 0 1px 4px rgba(22, 38, 54, 0.05);
+  --shadow-md: 0 4px 16px rgba(22, 38, 54, 0.07);
+  --shadow-lg: 0 12px 32px rgba(22, 38, 54, 0.09);
+  --shadow-active-tab: 0 4px 14px rgba(40, 81, 114, 0.22);
 
-  /* الخطوط القياسية */
-  --font-arabic: 'Cairo', 'IBM Plex Sans Arabic', -apple-system, sans-serif;
-  --font-numbers: 'Outfit', 'Cairo', sans-serif;
+  /* الخطوط القياسية المعتمدة - خط تجوال لجميع النصوص والأرقام، والخط المزخرف للعنوان فقط */
+  --font-arabic: 'Tajawal', sans-serif;
+  --font-numbers: 'Tajawal', sans-serif;
+  --font-title-decorative: 'MadarDecorative', 'Tajawal', sans-serif;
 
   /* أنصاف الأقطار والانتقالات */
   --radius-xs: 4px;
@@ -83,10 +102,10 @@ body {
   height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-deep);
+  background: #EFF3F6;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--bg-surface-elevated);
+  background: #CAD6DF;
   border-radius: var(--radius-full);
   border: 1px solid var(--border-subtle);
 }
@@ -102,36 +121,55 @@ body {
 }
 
 /* ==========================================================================
-   الهيدر العلوي المماثل لبروتوتايب الصورة الأولى (Top Bar)
+   الهيدر النقي الحصري لعلامة «مُدار» واللوقو (خالٍ من أي روابط أو أزرار إضافية)
    ========================================================================== */
 .site-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: 1.25rem 0;
+  padding: 1.5rem 0 1.25rem;
   border-bottom: 1px solid var(--border-subtle);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.25rem;
+  position: relative;
+}
+
+.site-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  right: 0;
+  width: 160px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--olive-accent) 0%, var(--slate-dark-blue) 100%);
 }
 
 .brand-area {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.15rem;
   text-decoration: none;
   color: var(--steel-light);
+  user-select: none;
 }
 
 .brand-mark {
-  width: 38px;
-  height: 38px;
-  background: var(--slate-dark-blue);
-  border: 1px solid var(--steel-medium);
-  border-radius: var(--radius-sm);
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F4F7FA 100%);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--steel-light);
-  box-shadow: 0 2px 8px rgba(40, 81, 114, 0.35);
+  color: var(--slate-dark-blue);
+  box-shadow: 0 2px 10px rgba(40, 81, 114, 0.1);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.brand-mark:hover {
+  transform: translateY(-2px);
+  border-color: var(--olive-accent);
+  box-shadow: 0 4px 16px rgba(40, 81, 114, 0.15), 0 0 12px var(--olive-subtle);
 }
 
 .brand-text-block {
@@ -140,79 +178,21 @@ body {
 }
 
 .brand-title {
-  font-size: 1.65rem;
-  font-weight: 900;
-  line-height: 1.15;
-  color: var(--steel-light);
-  letter-spacing: -0.5px;
+  font-family: var(--font-title-decorative);
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--slate-dark-blue);
+  letter-spacing: -0.2px;
 }
 
 .brand-subtitle {
-  font-size: 0.78rem;
+  font-family: var(--font-arabic);
+  font-size: 0.8rem;
   color: var(--slate-gray);
   font-weight: 600;
   margin-top: 2px;
-}
-
-/* أدوات التحكم العلوية بالهيدر */
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.header-status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.9rem;
-  background: var(--bg-surface-elevated);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-full);
-  font-size: 0.8rem;
-  color: var(--steel-medium);
-  font-weight: 600;
-}
-
-.status-dot-indicator {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--steel-medium);
-}
-
-.header-icon-btn {
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-full);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--steel-medium);
-  cursor: pointer;
-  transition: var(--transition-fast);
-}
-
-.header-icon-btn:hover {
-  background: var(--bg-surface-elevated);
-  border-color: var(--slate-dark-blue);
-  color: var(--steel-light);
-}
-
-/* ==========================================================================
-   شريط المسار السداسي/المجزأ المتصل (Continuous Stepper Navigation)
-   مطابق تماماً لنمط البروتوتايب في الصورة الأولى
-   ========================================================================== */
-.stepper-container {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 0.4rem;
-  margin-bottom: 2rem;
-  box-shadow: var(--shadow-sm);
-  overflow-x: auto;
+  letter-spacing: -0.2px;
 }
 
 .stepper-nav {
@@ -365,38 +345,40 @@ body {
 }
 
 .btn-primary {
-  background-color: var(--slate-dark-blue);
-  color: var(--steel-light);
-  border-color: rgba(179, 196, 204, 0.3);
-  box-shadow: 0 2px 10px rgba(40, 81, 114, 0.3);
+  background: linear-gradient(135deg, #285172 0%, #31587A 50%, #415C47 100%);
+  color: #FFFFFF;
+  border-color: rgba(40, 81, 114, 0.4);
+  box-shadow: 0 4px 14px rgba(40, 81, 114, 0.25), 0 2px 6px rgba(65, 92, 71, 0.18);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: var(--slate-dark-blue-hover);
-  border-color: var(--steel-medium);
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, #1F4260 0%, #285172 50%, #374A3B 100%);
+  border-color: var(--slate-dark-blue);
+  box-shadow: 0 6px 20px rgba(40, 81, 114, 0.35), 0 0 14px var(--olive-glow);
+  transform: translateY(-2px);
 }
 
 .btn-secondary {
-  background-color: var(--bg-surface-elevated);
-  color: var(--steel-medium);
-  border-color: var(--border-subtle);
+  background-color: #FFFFFF;
+  color: var(--slate-dark-blue);
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-secondary:hover:not(:disabled) {
   background-color: var(--bg-surface-hover);
   color: var(--steel-light);
-  border-color: var(--border-medium);
+  border-color: var(--slate-dark-blue);
 }
 
 .btn-accent {
   background-color: var(--dim-gray);
-  color: var(--steel-light);
-  border-color: rgba(229, 234, 238, 0.2);
+  color: #FFFFFF;
+  border-color: transparent;
 }
 
 .btn-accent:hover:not(:disabled) {
-  background-color: #8c767d;
+  background-color: #635257;
   color: #FFFFFF;
 }
 
@@ -429,10 +411,42 @@ body {
   font-weight: 700;
 }
 
-/* الأرقام الموحدة */
-.num-font {
-  font-family: var(--font-numbers);
+/* الأرقام الموحدة - خط تجوال حصراً وبأرقام عربية */
+.num-font,
+.kpi-value,
+.fit-percent,
+.gauge-score-number,
+.gauge-score-total,
+.live-stat-value,
+.money-input,
+.district-pill-price,
+.metric-strip-value,
+.metric-val,
+.currency-suffix {
+  font-family: 'Tajawal', sans-serif !important;
   font-feature-settings: "tnum";
+}
+
+/* تنسيق علامة التربيع بالعربي (م٢) بخط تجوال متناسق */
+sup, .num-font sup {
+  font-family: 'Tajawal', sans-serif !important;
+  font-size: 0.72em;
+  line-height: 0;
+  vertical-align: 0.45em;
+  margin-right: 1px;
+}
+
+/* عموم عناصر الواجهة تعتمد خط تجوال المعتمد */
+body, input, button, select, textarea, table, th, td, span, strong, div, p, h1, h2, h3, h4, h5, h6, text {
+  font-family: 'Tajawal', sans-serif;
+}
+
+svg text {
+  font-family: 'Tajawal', sans-serif !important;
+}
+
+.brand-title {
+  font-family: var(--font-title-decorative) !important;
 }
 
 /* التجاوب مع مختلف الشاشات */

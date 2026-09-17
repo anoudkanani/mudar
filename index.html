@@ -6,6 +6,11 @@
   <title>مُدار | منصة دراسات الجدوى الاقتصادية لرواد الأعمال في المملكة العربية السعودية</title>
   <meta name="description" content="منصة متخصصة لتقييم الأنشطة التجارية في السوق السعودي، اختيار الموقع المناسب، احتساب الدخل والتكاليف، وقياس مؤشر النجاح وفترة استرداد رأس المال وفق بيانات ومعايير معتمدة.">
   
+  <!-- الخطوط القياسية المعتمدة -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+
   <!-- ملفات التنسيق والأنماط المعتمدة -->
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/components.css">
@@ -15,285 +20,94 @@
 
   <div class="app-wrapper">
     
-    <!-- الهيدر العلوي والعلامة التجارية (مطابق لأسلوب البروتوتايب) -->
+    <!-- الهيدر النقي الحصري لعلامة «مُدار» واللوقو الهندسي الجديد -->
     <header class="site-header" id="main-header">
       <div class="brand-area">
-        <div class="brand-mark" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"></circle>
-            <path d="M3.6 9h16.8"></path>
-            <path d="M3.6 15h16.8"></path>
-            <path d="M12 3a14 14 0 0 0 0 18"></path>
+        <div class="brand-mark" aria-label="شعار مُدار">
+          <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="orbitGrad" x1="4" y1="20" x2="36" y2="20" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#285172"/>
+                <stop offset="55%" stop-color="#415C47"/>
+                <stop offset="100%" stop-color="#55725A"/>
+              </linearGradient>
+              <linearGradient id="barGrad1" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stop-color="#78656B"/>
+                <stop offset="100%" stop-color="#8FA0AA"/>
+              </linearGradient>
+              <linearGradient id="barGrad2" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stop-color="#285172"/>
+                <stop offset="100%" stop-color="#3A6C94"/>
+              </linearGradient>
+              <linearGradient id="barGrad3" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stop-color="#374A3B"/>
+                <stop offset="100%" stop-color="#415C47"/>
+              </linearGradient>
+              <linearGradient id="barGrad4" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stop-color="#415C47"/>
+                <stop offset="100%" stop-color="#55725A"/>
+              </linearGradient>
+            </defs>
+            <!-- مسار نصف الدائرة المداري الفلكي الأساسي -->
+            <path d="M 6 25 A 14 14 0 1 1 34 25" stroke="url(#orbitGrad)" stroke-width="2.75" stroke-linecap="round" fill="none"/>
+            <!-- أعمدة الإحصائيات والبيانات الصاعدة -->
+            <rect x="12" y="22" width="3" height="8" rx="1.5" fill="url(#barGrad1)"/>
+            <rect x="17" y="17" width="3" height="13" rx="1.5" fill="url(#barGrad2)"/>
+            <rect x="22" y="12" width="3" height="18" rx="1.5" fill="url(#barGrad3)"/>
+            <rect x="27" y="7" width="3" height="23" rx="1.5" fill="url(#barGrad4)"/>
+            <!-- خط الأساس الإحصائي البياني -->
+            <path d="M 8 32 L 32 32" stroke="#B3C4CC" stroke-width="1.75" stroke-linecap="round"/>
+            <!-- نقطة ارتكاز مدارية تمثل قمة البيانات ومؤشر القرار -->
+            <circle cx="34" cy="25" r="2.75" fill="#415C47" stroke="#FFFFFF" stroke-width="1.5"/>
+            <circle cx="28.5" cy="7" r="1.5" fill="#285172"/>
           </svg>
         </div>
         <div class="brand-text-block">
           <h1 class="brand-title">مُـدَار</h1>
-          <div class="brand-subtitle">دراسات الجدوى الاقتصادية • السوق السعودي</div>
         </div>
-      </div>
-      
-      <div class="header-actions">
-        <div class="header-status-badge">
-          <span class="status-dot-indicator"></span>
-          <span>معايير مرجعية معتمدة 1447هـ</span>
-        </div>
-        <button type="button" class="header-icon-btn" aria-label="حساب المستخدم" title="حساب المستثمر">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
-        </button>
       </div>
     </header>
 
-    <!-- شريط تتبع المراحل السبع المتصل (Continuous Stepper Bar) -->
-    <nav class="stepper-container" aria-label="مراحل دراسة الجدوى" id="stepper-bar">
-      <div class="stepper-nav" id="stepper-nav-list">
-        <button type="button" class="stepper-tab active" data-step="1" id="step-btn-1">
-          <span class="stepper-tab-num">1</span>
-          <span class="stepper-tab-text">ابدأ بدراسة الجدوى</span>
-        </button>
-        <button type="button" class="stepper-tab" data-step="2" id="step-btn-2">
-          <span class="stepper-tab-num">2</span>
-          <span class="stepper-tab-text">اختر نشاطك التجاري</span>
-        </button>
-        <button type="button" class="stepper-tab" data-step="3" id="step-btn-3">
-          <span class="stepper-tab-num">3</span>
-          <span class="stepper-tab-text">اختر المدينة والموقع المناسب</span>
-        </button>
-        <button type="button" class="stepper-tab" data-step="4" id="step-btn-4">
-          <span class="stepper-tab-num">4</span>
-          <span class="stepper-tab-text">تحليل الموقع والنشاط</span>
-        </button>
-        <button type="button" class="stepper-tab" data-step="5" id="step-btn-5">
-          <span class="stepper-tab-num">5</span>
-          <span class="stepper-tab-text">حساب الدخل والتكاليف</span>
-        </button>
-        <button type="button" class="stepper-tab" data-step="6" id="step-btn-6">
-          <span class="stepper-tab-num">6</span>
-          <span class="stepper-tab-text">مؤشر نجاح المشروع والمخاطر</span>
-        </button>
-        <button type="button" class="stepper-tab" data-step="7" id="step-btn-7">
-          <span class="stepper-tab-num">7</span>
-          <span class="stepper-tab-text">التقرير النهائي والنصائح المخصصة</span>
-        </button>
-      </div>
-    </nav>
-
     <!-- ====================================================================
-         المرحلة 1: ابدأ بدراسة الجدوى (Landing Page Slider على طريقة dhamanah.com)
+         المرحلة 1: ابدأ بدراسة الجدوى
          ==================================================================== -->
     <section class="stage-section active" id="stage-1" aria-labelledby="stage-1-title">
       <div class="landing-slider-container" id="landing-hero-slider">
-        
-        <!-- مساحة عرض الشرائح -->
-        <div class="slider-viewport">
-          <div class="slider-track" id="slider-track">
-            
-            <!-- الشريحة 1: الرؤية وتمكين رواد الأعمال بالسوق السعودي -->
-            <div class="landing-slide" data-slide-index="0">
-              <div class="slide-badge">منصة التخطيط الاستثماري المعتمدة لرواد الأعمال بالمملكة</div>
-              <h2 class="slide-title" id="stage-1-title">
-                اتخذ قرار انطلاق مشروعك التجاري <br><span>بناءً على مؤشرات وبيانات قطاعية حقيقية</span>
-              </h2>
-              <p class="slide-desc">
-                تساعدك منصة <strong>«مُدار»</strong> على تقييم فرص الاستثمار في السوق السعودي عبر محاكاة متكاملة تربط بين طبيعة النشاط والحي التجاري وتكاليف التأسيس والتشغيل وحساب فترة استرداد رأس المال ومؤشر الأمان المالي.
-              </p>
-              
-              <div class="slide-pillars-grid">
-                <div class="slide-pillar-card">
-                  <div class="pillar-head">
-                    <span class="pillar-bullet"></span>
-                    <span>معايير السوق السعودي</span>
-                  </div>
-                  <p class="pillar-text">متوسطات واقعية لأسعار إيجار المتر، ورسوم تراخيص منصة بلدي، وتكاليف التأسيس والرواتب والتشغيل.</p>
-                </div>
-                <div class="slide-pillar-card">
-                  <div class="pillar-head">
-                    <span class="pillar-bullet"></span>
-                    <span>تحليل الموقع والنشاط</span>
-                  </div>
-                  <p class="pillar-text">تشخيص ملاءمة النشاط لطبيعة الحي التجاري وكثافة الحركة والتدفق المتوقع والقوة الشرائية للعملاء.</p>
-                </div>
-                <div class="slide-pillar-card">
-                  <div class="pillar-head">
-                    <span class="pillar-bullet"></span>
-                    <span>مؤشر الأمان والمخاطر</span>
-                  </div>
-                  <p class="pillar-text">خوارزمية ذكية تحتسب فترة استرداد الاستثمار ونقطة التعادل بدقة وتكشف مصفوفة المخاطر المحتملة.</p>
-                </div>
+        <div class="landing-slide">
+          <h2 class="slide-title" id="stage-1-title">
+            اتخذ قرار انطلاق مشروعك التجاري <br><span>بناءً على مؤشرات وبيانات قطاعية حقيقية</span>
+          </h2>
+          <p class="slide-desc">
+            تساعدك منصة <strong>«مُدار»</strong> على تقييم فرص الاستثمار في السوق السعودي عبر محاكاة متكاملة تربط بين طبيعة النشاط والحي التجاري وتكاليف التأسيس والتشغيل وحساب فترة استرداد رأس المال ومؤشر الأمان المالي.
+          </p>
+          
+          <div class="slide-pillars-grid">
+            <div class="slide-pillar-card">
+              <div class="pillar-head">
+                <span class="pillar-bullet"></span>
+                <span>معايير السوق السعودي</span>
               </div>
-
-              <div class="slide-cta-row">
-                <button type="button" class="btn btn-primary" id="btn-start-study" style="font-size: 1.1rem; padding: 0.95rem 2.5rem;">
-                  <span>ابدأ دراسة الجدوى الآن</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 12H5"></path>
-                    <path d="M12 19l-7-7 7-7"></path>
-                  </svg>
-                </button>
-                <div class="slide-note">متوسط وقت إعداد الدراسة من 3 إلى 5 دقائق • لا يتطلب أي تسجيل دخول معقد</div>
-              </div>
+              <p class="pillar-text">متوسطات واقعية لأسعار إيجار المتر، ورسوم تراخيص منصة بلدي، وتكاليف التأسيس والرواتب والتشغيل.</p>
             </div>
-
-            <!-- الشريحة 2: رحلة المراحل السبع المتصلة -->
-            <div class="landing-slide" data-slide-index="1">
-              <div class="slide-badge">منهجية الجدوى الشاملة خطوة بخطوة</div>
-              <h2 class="slide-title">
-                رحلة متسلسلة من سبع مراحل <br><span>تقودك مباشرة من الفكرة إلى القرار الاستثماري</span>
-              </h2>
-              <p class="slide-desc">
-                صُممت منصة «مُدار» كتسلسل عملي تفاعلي واضح؛ بحيث تقود كل خطوة إلى الخطوة التالية بسلاسة، مع تجميع البيانات تدريجياً لإنتاج وثيقة الجدوى الاقتصادية الشاملة.
-              </p>
-
-              <div class="slide-pillars-grid">
-                <div class="slide-pillar-card">
-                  <div class="pillar-head">
-                    <span class="pillar-bullet"></span>
-                    <span>المراحل التمهيدية</span>
-                  </div>
-                  <p class="pillar-text">تحديد النشاط التجاري، اختيار المدينة والحي، وتحليل الملاءمة الميدانية وحجم التدفق المتوقع.</p>
-                </div>
-                <div class="slide-pillar-card">
-                  <div class="pillar-head">
-                    <span class="pillar-bullet"></span>
-                    <span>المحاكاة المالية التفاعلية</span>
-                  </div>
-                  <p class="pillar-text">تخصيص التكاليف التأسيسية، المصاريف التشغيلية الشهرية، ومعدل دوران المبيعات وهامش الربح.</p>
-                </div>
-                <div class="slide-pillar-card">
-                  <div class="pillar-head">
-                    <span class="pillar-bullet"></span>
-                    <span>التقرير النهائي المعتمد</span>
-                  </div>
-                  <p class="pillar-text">وثيقة تنفيذية تتضمن جداول التدفقات لـ 24 شهراً، الرسوم البيانية، والتوصيات الاستراتيجية المخصصة.</p>
-                </div>
+            <div class="slide-pillar-card">
+              <div class="pillar-head">
+                <span class="pillar-bullet"></span>
+                <span>تحليل الموقع والنشاط</span>
               </div>
-
-              <div class="slide-cta-row">
-                <button type="button" class="btn btn-primary btn-slide-trigger">
-                  <span>الانتقال لاختيار النشاط التجاري</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 12H5"></path>
-                    <path d="M12 19l-7-7 7-7"></path>
-                  </svg>
-                </button>
-              </div>
+              <p class="pillar-text">تشخيص ملاءمة النشاط لطبيعة الحي التجاري وكثافة الحركة والتدفق المتوقع والقوة الشرائية للعملاء.</p>
             </div>
+          </div>
 
-            <!-- الشريحة 3: دقة المحاكاة والتحليل الموقعي -->
-            <div class="landing-slide" data-slide-index="2">
-              <div class="slide-badge">تحليل النطاق الجغرافي ومعاملات الإيجار</div>
-              <h2 class="slide-title">
-                تحديد تكاليف المتر والتشغيل <br><span>وفق النطاق الجغرافي ونمط الشارع التجاري</span>
-              </h2>
-              <p class="slide-desc">
-                يختلف نجاح المشروع باختلاف موقعه؛ لذلك تتيح المنصة مقارنة أسعار الإيجار ونسب الحركة بين الشوارع الرئيسية والمجمعات المفتوحة والمراكز التجارية في كبرى المدن السعودية.
-              </p>
-
-              <div class="slide-pillars-grid">
-                <div class="slide-pillar-card">
-                  <div class="pillar-head">
-                    <span class="pillar-bullet"></span>
-                    <span>حساب الإيجار التلقائي</span>
-                  </div>
-                  <p class="pillar-text">احتساب الإيجار السنوي والشهري مباشرة بضرب المساحة المقترحة في متوسط إيجار المتر للحي المحدد.</p>
-                </div>
-                <div class="slide-pillar-card">
-                  <div class="pillar-head">
-                    <span class="pillar-bullet"></span>
-                    <span>تقدير حجم الزوار</span>
-                  </div>
-                  <p class="pillar-text">معاملات دقيقة لتدفق العملاء المحتملين حسب طبيعة المنطقة والقوة الشرائية لقاطني الحي.</p>
-                </div>
-                <div class="slide-pillar-card">
-                  <div class="pillar-head">
-                    <span class="pillar-bullet"></span>
-                    <span>مرونة تخصيص الأرقام</span>
-                  </div>
-                  <p class="pillar-text">إمكانية تعديل أي قيمة مالية أو تشغيلية يدوياً بموجب عروض الأسعار أو الاتفاقيات الخاصة بك.</p>
-                </div>
-              </div>
-
-              <div class="slide-cta-row">
-                <button type="button" class="btn btn-primary btn-slide-trigger">
-                  <span>ابدأ دراسة الجدوى الآن</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 12H5"></path>
-                    <path d="M12 19l-7-7 7-7"></path>
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            <!-- الشريحة 4: مؤشر الأمان المالي ومصفوفة المخاطر -->
-            <div class="landing-slide" data-slide-index="3">
-              <div class="slide-badge">إدارة المخاطر واختبار صمود الاستثمار</div>
-              <h2 class="slide-title">
-                قياس نقطة التعادل وفترة الاسترداد <br><span>مع اختبار حساسية المشروع لتقلبات السوق</span>
-              </h2>
-              <p class="slide-desc">
-                تزودك المنصة بمؤشر أمان مالي يقيس سرعة استرداد النفقات التأسيسية، وتكشف مصفوفة المخاطر المحتملة لتمكينك من اتخاذ تدابير استباقية تحمي استثمارك.
-              </p>
-
-              <div class="slide-pillars-grid">
-                <div class="slide-pillar-card">
-                  <div class="pillar-head">
-                    <span class="pillar-bullet"></span>
-                    <span>نقطة التعادل الشهرية</span>
-                  </div>
-                  <p class="pillar-text">معرفة حجم المبيعات وعدد العملاء اليومي الأدنى اللازم لتغطية كافة المصاريف وتجنب الخسائر.</p>
-                </div>
-                <div class="slide-pillar-card">
-                  <div class="pillar-head">
-                    <span class="pillar-bullet"></span>
-                    <span>اختبار حساسية السوق</span>
-                  </div>
-                  <p class="pillar-text">محاكاة قدرة المشروع على الاستمرار عند انخفاض المبيعات بنسبة 15% أو 25% دون تعثر مالي.</p>
-                </div>
-                <div class="slide-pillar-card">
-                  <div class="pillar-head">
-                    <span class="pillar-bullet"></span>
-                    <span>توصيات تعاقدية مخصصة</span>
-                  </div>
-                  <p class="pillar-text">إرشادات تفاوضية لطلب فترات سماح كافية للتجهيز وترشيد نفقات الديكور وإدارة السيولة النقدية.</p>
-                </div>
-              </div>
-
-              <div class="slide-cta-row">
-                <button type="button" class="btn btn-primary btn-slide-trigger">
-                  <span>ابدأ دراسة الجدوى الآن</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 12H5"></path>
-                    <path d="M12 19l-7-7 7-7"></path>
-                  </svg>
-                </button>
-              </div>
-            </div>
-
+          <div class="slide-cta-row">
+            <button type="button" class="btn btn-primary" id="btn-start-study" style="font-size: 1.1rem; padding: 0.95rem 2.5rem;">
+              <span>ابدأ دراسة الجدوى الآن</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5"></path>
+                <path d="M12 19l-7-7 7-7"></path>
+              </svg>
+            </button>
           </div>
         </div>
-
-        <!-- أزرار التنقل الجانبية في السلايدر -->
-        <button type="button" class="slider-arrow-btn prev" id="slider-arrow-prev" aria-label="الشريحة السابقة" title="السابق">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 18l6-6-6-6"></path>
-          </svg>
-        </button>
-        <button type="button" class="slider-arrow-btn next" id="slider-arrow-next" aria-label="الشريحة التالية" title="التالي">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15 18l-6-6 6-6"></path>
-          </svg>
-        </button>
-
-        <!-- مؤشرات النقاط السفلية للسلايدر -->
-        <div class="slider-bullets-bar" id="slider-bullets-bar">
-          <button type="button" class="slider-bullet active" data-slide-target="0" aria-label="الانتقال للشريحة 1"></button>
-          <button type="button" class="slider-bullet" data-slide-target="1" aria-label="الانتقال للشريحة 2"></button>
-          <button type="button" class="slider-bullet" data-slide-target="2" aria-label="الانتقال للشريحة 3"></button>
-          <button type="button" class="slider-bullet" data-slide-target="3" aria-label="الانتقال للشريحة 4"></button>
-        </div>
-
       </div>
     </section>
 
@@ -339,7 +153,7 @@
           <!-- 1. اختيار المدينة الرئيسية -->
           <div class="form-group">
             <label class="form-label">
-              <span>1. اختر المدينة الرئيسية:</span>
+              <span>١. اختر المدينة الرئيسية:</span>
             </label>
             <div class="cities-grid" id="cities-grid-container">
               <!-- يتم توليد بطاقات المدن ديناميكياً -->
@@ -349,7 +163,7 @@
           <!-- 2. اختيار الحي التجاري (بديل القائمة المنسدلة: بطاقات وخيارات اختيار مباشر) -->
           <div class="form-group">
             <label class="form-label">
-              <span>2. اختر الحي التجاري المستهدف:</span>
+              <span>٢. اختر الحي التجاري المستهدف:</span>
               <small>(انقر مباشرة على اسم الحي لاختياره)</small>
             </label>
             <div class="district-pills-grid" id="district-pills-container">
@@ -360,7 +174,7 @@
           <!-- 3. نوع الموقع التجاري -->
           <div class="form-group">
             <label class="form-label">
-              <span>3. نوع ونمط الموقع التجاري:</span>
+              <span>٣. نوع ونمط الموقع التجاري:</span>
             </label>
             <div class="commercial-zones-grid" id="commercial-zones-container">
               <!-- يتم توليد أنماط المواقع التجارية ديناميكياً -->
@@ -370,12 +184,12 @@
           <!-- 4. مساحة المحل المقترحة -->
           <div class="form-group">
             <label class="form-label" for="area-input">
-              <span>4. مساحة المحل المقترحة (متر مربع):</span>
-              <small>المساحة النموذجية الموصى بها لهذا النشاط: <span id="recommended-area-badge" class="num-font">80</span> م²</small>
+              <span>٤. مساحة المحل المقترحة (متر مربع):</span>
+              <small>المساحة النموذجية الموصى بها لهذا النشاط: <span id="recommended-area-badge" class="num-font">٨٠</span> م<sup class="num-font">٢</sup></small>
             </label>
             <div class="custom-input-group">
-              <input type="number" class="money-input" id="area-input" value="80" min="20" max="1000" step="5">
-              <span class="currency-suffix">م²</span>
+              <input type="text" inputmode="numeric" class="money-input num-font" id="area-input" value="٨٠">
+              <span class="currency-suffix">م<sup class="num-font">٢</sup></span>
             </div>
           </div>
 
@@ -394,11 +208,11 @@
             <div class="preview-details-list">
               <div class="preview-detail-row">
                 <span>متوسط سعر إيجار المتر التجاري:</span>
-                <strong id="preview-rent-meter" class="num-font">1,800 ر.س / م² سنويًا</strong>
+                <strong id="preview-rent-meter" class="num-font">١٬٨٠٠ ر.س لكل م<sup class="num-font">٢</sup> سنويًا</strong>
               </div>
               <div class="preview-detail-row">
                 <span>إجمالي الإيجار السنوي المقدر:</span>
-                <strong id="preview-total-rent" class="num-font" style="color: var(--steel-light);">144,000 ر.س</strong>
+                <strong id="preview-total-rent" class="num-font" style="color: var(--steel-light);">١٤٤٬٠٠٠ ر.س</strong>
               </div>
               <div class="preview-detail-row">
                 <span>كثافة الحركة المتوقعة:</span>
@@ -427,7 +241,7 @@
         <!-- كارت نسبة التوافق الميداني -->
         <div class="analysis-score-card">
           <div class="fit-circle-meter" id="fit-circle-meter">
-            <span class="fit-percent" id="fit-score-val">88%</span>
+            <span class="fit-percent" id="fit-score-val">٨٨٪</span>
             <span class="fit-text" id="fit-score-label">توافق ممتاز</span>
           </div>
           <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--steel-light); margin-bottom: 0.5rem;" id="fit-headline">
@@ -486,20 +300,15 @@
     </section>
 
     <!-- ====================================================================
-         المرحلة 5: حساب الدخل والتكاليف (Financial Simulator)
+         المرحلة 5: حساب الدخل والتكاليف (Financial Results)
          ==================================================================== -->
     <section class="stage-section" id="stage-5" aria-labelledby="stage-5-title">
-      <div class="section-header" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
-        <div>
-          <h2 class="section-title" id="stage-5-title">المرحلة الخامسة: حساب الدخل والتكاليف التقديرية</h2>
-          <p class="section-subtitle">تم تحميل القيم المرجعية النموذجية لنشاطك، ويمكنك تخصيص وتعديل أي رقم بحرية.</p>
-        </div>
-        <button type="button" class="reset-benchmarks-btn" id="btn-reset-benchmarks">
-          <span>استعادة القيم المعيارية الأصلية</span>
-        </button>
+      <div class="section-header">
+        <h2 class="section-title" id="stage-5-title">المرحلة الخامسة: حساب الدخل والتكاليف التقديرية</h2>
+        <p class="section-subtitle">النتائج المالية والتشغيلية المحتسبة تلقائياً بناءً على النشاط المختار وموقع المحل ومساحته في المراحل السابقة.</p>
       </div>
 
-      <!-- تبويبات الحسابات المالية (مماثلة للبروتوتايب) -->
+      <!-- تبويبات الحسابات المالية -->
       <div class="financial-tabs-nav">
         <button type="button" class="tab-nav-btn active" data-tab="tab-capex" id="tab-btn-capex">
           <span>النفقات التأسيسية والاستثمارية</span>
@@ -508,67 +317,55 @@
           <span>المصاريف التشغيلية الشهرية</span>
         </button>
         <button type="button" class="tab-nav-btn" data-tab="tab-revenue" id="tab-btn-revenue">
-          <span>تقدير المبيعات والدخل اليومي</span>
+          <span>تقدير المبيعات والدخل المتوقع</span>
         </button>
       </div>
 
       <!-- التبويب 1: النفقات التأسيسية والاستثمارية -->
       <div class="financial-tab-pane active" id="tab-capex">
         <div class="inputs-grid-2col">
-          <div class="input-card">
+          <div class="input-card result-display-card">
             <div class="input-card-header">
               <span class="input-title">رسوم التراخيص والسجل والدفاع المدني</span>
-              <span class="benchmark-badge">معياري استرشادي</span>
+              <span class="benchmark-badge">اشتراطات منصة بلدي</span>
             </div>
-            <div class="custom-input-group">
-              <input type="number" class="money-input fin-input" id="input-licensing" data-field="licensing" value="12000">
-              <span class="currency-suffix">ر.س</span>
+            <div class="display-metric-row">
+              <span class="display-metric-val num-font" id="val-licensing">١٢٬٠٠٠ ر.س</span>
             </div>
-            <div class="range-slider-wrap">
-              <input type="range" class="range-slider fin-slider" data-target="input-licensing" min="3000" max="50000" step="1000" value="12000">
-            </div>
+            <p class="display-metric-note">رسوم استخراج السجل التجاري، رخصة البلدية، وتصاريح السلامة والبيئة للنشاط.</p>
           </div>
 
-          <div class="input-card">
+          <div class="input-card result-display-card">
             <div class="input-card-header">
               <span class="input-title">أعمال الديكور والتهيئة والتشطيب والواجهة</span>
-              <span class="benchmark-badge">معياري استرشادي</span>
+              <span class="benchmark-badge">محسوب للمساحة (<span class="display-area-tag num-font">٨٠</span> م<sup class="num-font">٢</sup>)</span>
             </div>
-            <div class="custom-input-group">
-              <input type="number" class="money-input fin-input" id="input-fitout" data-field="fitout" value="140000">
-              <span class="currency-suffix">ر.س</span>
+            <div class="display-metric-row">
+              <span class="display-metric-val num-font" id="val-fitout">١٤٠٬٠٠٠ ر.س</span>
             </div>
-            <div class="range-slider-wrap">
-              <input type="range" class="range-slider fin-slider" data-target="input-fitout" min="20000" max="500000" step="5000" value="140000">
-            </div>
+            <p class="display-metric-note">تكاليف التجهيزات الداخلية والواجهة المعمارية والإضاءة والأرضيات وفق معايير النشاط المعتمد.</p>
           </div>
 
-          <div class="input-card">
+          <div class="input-card result-display-card">
             <div class="input-card-header">
               <span class="input-title">الآلات والمعدات والأجهزة التشغيلية</span>
-              <span class="benchmark-badge">معياري استرشادي</span>
+              <span class="benchmark-badge">معيار تشغيلي معتمد</span>
             </div>
-            <div class="custom-input-group">
-              <input type="number" class="money-input fin-input" id="input-equipment" data-field="equipment" value="95000">
-              <span class="currency-suffix">ر.س</span>
+            <div class="display-metric-row">
+              <span class="display-metric-val num-font" id="val-equipment">٩٥٬٠٠٠ ر.س</span>
             </div>
-            <div class="range-slider-wrap">
-              <input type="range" class="range-slider fin-slider" data-target="input-equipment" min="15000" max="400000" step="5000" value="95000">
-            </div>
+            <p class="display-metric-note">الأجهزة والمعدات التشغيلية وأنظمة نقاط البيع اللازمة لانطلاق المشروع بجاهزية تامة.</p>
           </div>
 
-          <div class="input-card">
+          <div class="input-card result-display-card">
             <div class="input-card-header">
               <span class="input-title">السيولة العاملة الأولية واحتياطي الطوارئ</span>
-              <span class="benchmark-badge">معياري استرشادي</span>
+              <span class="benchmark-badge">تغطية تشغيل أولية</span>
             </div>
-            <div class="custom-input-group">
-              <input type="number" class="money-input fin-input" id="input-working-cap" data-field="initialWorkingCap" value="35000">
-              <span class="currency-suffix">ر.س</span>
+            <div class="display-metric-row">
+              <span class="display-metric-val num-font" id="val-working-cap">٣٥٬٠٠٠ ر.س</span>
             </div>
-            <div class="range-slider-wrap">
-              <input type="range" class="range-slider fin-slider" data-target="input-working-cap" min="10000" max="200000" step="5000" value="35000">
-            </div>
+            <p class="display-metric-note">مخزون بضاعة تشغيلي أولي وسيولة نقدية احتياطية لتغطية التكاليف خلال فترة الانطلاق الأولى.</p>
           </div>
         </div>
       </div>
@@ -576,74 +373,66 @@
       <!-- التبويب 2: المصاريف التشغيلية الشهرية -->
       <div class="financial-tab-pane" id="tab-opex">
         <div class="inputs-grid-2col">
-          <div class="input-card">
+          <div class="input-card result-display-card">
             <div class="input-card-header">
               <span class="input-title">قسط الإيجار الشهري المقدر</span>
-              <span class="benchmark-badge">محسوب من الموقع</span>
+              <span class="benchmark-badge">محسوب من الموقع والمساحة</span>
             </div>
-            <div class="custom-input-group">
-              <input type="text" class="money-input" id="display-monthly-rent" readonly disabled style="opacity: 0.9; cursor: not-allowed;">
-              <span class="currency-suffix">ر.س / شهر</span>
+            <div class="display-metric-row">
+              <span class="display-metric-val num-font" id="val-monthly-rent">١٢٬٠٠٠ ر.س</span>
+              <span class="metric-unit-sub">/ شهر</span>
             </div>
-            <div style="font-size: 0.78rem; color: var(--slate-gray); margin-top: 0.5rem;">
-              * يُحسب تلقائياً: مساحة المحل (<span id="rent-calc-area" class="num-font">80</span> م²) × إيجار المتر السنوي مقسوماً على 12.
-            </div>
+            <p class="display-metric-note">
+              مساحة المحل (<span class="display-area-tag num-font">٨٠</span> م<sup class="num-font">٢</sup>) × متوسط إيجار المتر لحي <span class="display-district-name">الملقا</span> مقسوماً على ١٢ شهراً.
+            </p>
           </div>
 
-          <div class="input-card">
+          <div class="input-card result-display-card">
             <div class="input-card-header">
-              <span class="input-title">رواتب وأجور الموظفين الشهرية مع التأمينات</span>
-              <span class="benchmark-badge">معياري استرشادي</span>
+              <span class="input-title">رواتب وأجور الكادر التشغيلي الشهرية</span>
+              <span class="benchmark-badge">معيار تشغيل النشاط</span>
             </div>
-            <div class="custom-input-group">
-              <input type="number" class="money-input fin-input" id="input-labor" data-field="laborCost" value="14000">
-              <span class="currency-suffix">ر.س / شهر</span>
+            <div class="display-metric-row">
+              <span class="display-metric-val num-font" id="val-labor">١٤٬٠٠٠ ر.س</span>
+              <span class="metric-unit-sub">/ شهر</span>
             </div>
-            <div class="range-slider-wrap">
-              <input type="range" class="range-slider fin-slider" data-target="input-labor" min="4000" max="60000" step="1000" value="14000">
-            </div>
+            <p class="display-metric-note">الرواتب المباشرة لفريق العمل والتأمينات الاجتماعية ورسوم الإقامة وفق حجم النشاط النموذجي.</p>
           </div>
 
-          <div class="input-card">
+          <div class="input-card result-display-card">
             <div class="input-card-header">
-              <span class="input-title">نسبة تكلفة البضاعة والمواد المستهلكة المباعة</span>
-              <span class="benchmark-badge">نسبة من الإيراد</span>
+              <span class="input-title">تكلفة البضاعة والمواد المستهلكة المباعة (COGS)</span>
+              <span class="benchmark-badge">نسبة <span id="display-cogs-percent" class="num-font">٢٤</span>٪ من المبيعات</span>
             </div>
-            <div class="custom-input-group">
-              <input type="number" class="money-input fin-input" id="input-cogs" data-field="cogsPercent" value="24" min="5" max="85">
-              <span class="currency-suffix">% من المبيعات</span>
+            <div class="display-metric-row">
+              <span class="display-metric-val num-font" id="val-cogs-cost">٢٩٬٩٥٢ ر.س</span>
+              <span class="metric-unit-sub">/ شهر</span>
             </div>
-            <div class="range-slider-wrap">
-              <input type="range" class="range-slider fin-slider" data-target="input-cogs" min="5" max="85" step="1" value="24">
-            </div>
+            <p class="display-metric-note">تكلفة المواد الخام والأولية ومستلزمات التعبئة والتقديم المتغيرة طردياً مع حجم المبيعات.</p>
           </div>
 
-          <div class="input-card">
+          <div class="input-card result-display-card">
             <div class="input-card-header">
               <span class="input-title">الخدمات والمرافق (كهرباء، مياه، اتصالات)</span>
               <span class="benchmark-badge">معياري استرشادي</span>
             </div>
-            <div class="custom-input-group">
-              <input type="number" class="money-input fin-input" id="input-utilities" data-field="utilities" value="3500">
-              <span class="currency-suffix">ر.س / شهر</span>
+            <div class="display-metric-row">
+              <span class="display-metric-val num-font" id="val-utilities">٣٬٥٠٠ ر.س</span>
+              <span class="metric-unit-sub">/ شهر</span>
             </div>
-            <div class="range-slider-wrap">
-              <input type="range" class="range-slider fin-slider" data-target="input-utilities" min="500" max="25000" step="500" value="3500">
-            </div>
+            <p class="display-metric-note">استهلاك الطاقة الكهربائية والمياه وخدمات الإنترنت وأنظمة الحماية والدفع الإلكتروني.</p>
           </div>
 
-          <div class="input-card" style="grid-column: 1 / -1;">
+          <div class="input-card result-display-card" style="grid-column: 1 / -1;">
             <div class="input-card-header">
               <span class="input-title">ميزانية التسويق الرقمي والصيانة الدورية</span>
-              <span class="benchmark-badge">معياري استرشادي</span>
+              <span class="benchmark-badge">مخصص شهري</span>
             </div>
-            <div class="custom-input-group">
-              <input type="number" class="money-input fin-input" id="input-marketing" data-field="marketingMaintenance" value="3000">
-              <span class="currency-suffix">ر.س / شهر</span>
+            <div class="display-metric-row">
+              <span class="display-metric-val num-font" id="val-marketing">٣٬٠٠٠ ر.س</span>
+              <span class="metric-unit-sub">/ شهر</span>
             </div>
-            <div class="range-slider-wrap">
-              <input type="range" class="range-slider fin-slider" data-target="input-marketing" min="500" max="25000" step="500" value="3000">
-            </div>
+            <p class="display-metric-note">الحملات الإعلانية الميدانية والرقمية وعقود الصيانة الدورية للأجهزة والمعدات ونظافة المنشأة.</p>
           </div>
         </div>
       </div>
@@ -651,43 +440,52 @@
       <!-- التبويب 3: تقدير المبيعات والدخل -->
       <div class="financial-tab-pane" id="tab-revenue">
         <div class="inputs-grid-2col">
-          <div class="input-card">
+          <div class="input-card result-display-card">
             <div class="input-card-header">
-              <span class="input-title">متوسط عدد العملاء والطلبات يومياً</span>
-              <span class="benchmark-badge">معياري استرشادي</span>
+              <span class="input-title">متوسط عدد العملاء والطلبات اليومية</span>
+              <span class="benchmark-badge">مرتبط بحركة الشارع التجاري</span>
             </div>
-            <div class="custom-input-group">
-              <input type="number" class="money-input fin-input" id="input-visitors" data-field="dailyVisitors" value="160">
-              <span class="currency-suffix">عميل / يوم</span>
+            <div class="display-metric-row">
+              <span class="display-metric-val num-font" id="val-daily-visitors">١٦٠</span>
+              <span class="metric-unit-sub">عميل / يوم</span>
             </div>
-            <div class="range-slider-wrap">
-              <input type="range" class="range-slider fin-slider" data-target="input-visitors" min="10" max="800" step="5" value="160">
-            </div>
+            <p class="display-metric-note">محسوب بناءً على الكثافة الميدانية ونمط الشارع التجاري ومعدل التدفق لحي <span class="display-district-name">الملقا</span>.</p>
           </div>
 
-          <div class="input-card">
+          <div class="input-card result-display-card">
             <div class="input-card-header">
               <span class="input-title">متوسط قيمة الفاتورة للطلب الواحد</span>
-              <span class="benchmark-badge">معياري استرشادي</span>
+              <span class="benchmark-badge">القوة الشرائية للموقع</span>
             </div>
-            <div class="custom-input-group">
-              <input type="number" class="money-input fin-input" id="input-ticket" data-field="avgTicket" value="26">
-              <span class="currency-suffix">ر.س</span>
+            <div class="display-metric-row">
+              <span class="display-metric-val num-font" id="val-avg-ticket">٢٦ ر.س</span>
+              <span class="metric-unit-sub">لكل عميل</span>
             </div>
-            <div class="range-slider-wrap">
-              <input type="range" class="range-slider fin-slider" data-target="input-ticket" min="5" max="500" step="1" value="26">
-            </div>
+            <p class="display-metric-note">متوسط سلة المشتريات التقديرية للعميل وفق تصنيف النشاط والقوة الشرائية للحي المحدد.</p>
           </div>
 
-          <div class="input-card" style="grid-column: 1 / -1;">
+          <div class="input-card result-display-card">
             <div class="input-card-header">
-              <span class="input-title">أيام العمل في الشهر</span>
-              <span class="benchmark-badge">معياري</span>
+              <span class="input-title">الدخل اليومي الإجمالي المقدر</span>
+              <span class="benchmark-badge">مبيعات يومية</span>
             </div>
-            <div class="custom-input-group">
-              <input type="number" class="money-input fin-input" id="input-days" data-field="daysPerMonth" value="30" min="20" max="30">
-              <span class="currency-suffix">يوم / شهر</span>
+            <div class="display-metric-row">
+              <span class="display-metric-val num-font" id="val-daily-revenue">٤٬١٦٠ ر.س</span>
+              <span class="metric-unit-sub">/ يوم</span>
             </div>
+            <p class="display-metric-note">حاصل ضرب عدد الزوار اليومي (<span id="calc-visitors-text" class="num-font">١٦٠</span>) في متوسط قيمة الفاتورة (<span id="calc-ticket-text" class="num-font">٢٦</span> ر.س).</p>
+          </div>
+
+          <div class="input-card result-display-card">
+            <div class="input-card-header">
+              <span class="input-title">أيام العمل التشغيلية في الشهر</span>
+              <span class="benchmark-badge">تشغيل قياسي</span>
+            </div>
+            <div class="display-metric-row">
+              <span class="display-metric-val num-font" id="val-working-days">٣٠</span>
+              <span class="metric-unit-sub">يوم / شهر</span>
+            </div>
+            <p class="display-metric-note">احتساب التشغيل المستمر على مدار الشهر لتعظيم الاستفادة من قسط الإيجار والطاقة التشغيلية.</p>
           </div>
         </div>
       </div>
@@ -696,19 +494,19 @@
       <div class="live-financial-bar" id="live-financial-bar">
         <div class="live-stat-item">
           <span class="live-stat-label">إجمالي النفقات التأسيسية:</span>
-          <span class="live-stat-value" id="live-total-capex">282,000 ر.س</span>
+          <span class="live-stat-value" id="live-total-capex">٢٨٢٬٠٠٠ ر.س</span>
         </div>
         <div class="live-stat-item">
           <span class="live-stat-label">الدخل الشهري المتوقع:</span>
-          <span class="live-stat-value" id="live-monthly-revenue">124,800 ر.س</span>
+          <span class="live-stat-value" id="live-monthly-revenue">١٢٤٬٨٠٠ ر.س</span>
         </div>
         <div class="live-stat-item">
           <span class="live-stat-label">المصاريف التشغيلية الشهرية:</span>
-          <span class="live-stat-value" id="live-monthly-opex">62,450 ر.س</span>
+          <span class="live-stat-value" id="live-monthly-opex">٦٢٬٤٥٠ ر.س</span>
         </div>
         <div class="live-stat-item">
           <span class="live-stat-label">صافي الربح الشهري المقدر:</span>
-          <span class="live-stat-value" id="live-net-profit" style="color: var(--steel-light);">62,350 ر.س</span>
+          <span class="live-stat-value" id="live-net-profit" style="color: var(--steel-light);">٦٢٬٣٥٠ ر.س</span>
         </div>
       </div>
     </section>
@@ -731,8 +529,8 @@
               <path class="gauge-progress" id="svg-gauge-progress" d="M 20 100 A 80 80 0 0 1 180 100" stroke-dasharray="251.2" stroke-dashoffset="50"></path>
             </svg>
             <div class="gauge-center-text">
-              <span class="gauge-score-number" id="gauge-score-number">82</span>
-              <span class="gauge-score-total">/100</span>
+              <span class="gauge-score-number" id="gauge-score-number">٨٢</span>
+              <span class="gauge-score-total">/ ١٠٠</span>
             </div>
           </div>
 
@@ -747,11 +545,11 @@
           <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-subtle); width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: center;">
             <div>
               <div style="font-size: 0.8rem; color: var(--slate-gray);">فترة استرداد رأس المال</div>
-              <div style="font-size: 1.15rem; font-weight: 800; color: var(--steel-light);" id="metric-payback-text" class="num-font">سنة و 2 شهر</div>
+              <div style="font-size: 1.15rem; font-weight: 800; color: var(--steel-light);" id="metric-payback-text" class="num-font">سنة و ٢ شهر</div>
             </div>
             <div>
               <div style="font-size: 0.8rem; color: var(--slate-gray);">نقطة التعادل الشهرية</div>
-              <div style="font-size: 1.15rem; font-weight: 800; color: var(--steel-light);" id="metric-breakeven-sar" class="num-font">41,200 ر.س</div>
+              <div style="font-size: 1.15rem; font-weight: 800; color: var(--steel-light);" id="metric-breakeven-sar" class="num-font">٤١٬٢٠٠ ر.س</div>
             </div>
           </div>
         </div>
@@ -772,9 +570,9 @@
               <p style="font-size: 0.85rem; color: var(--slate-gray);">اختبر قدرة مشروعك على الصمود وتغطية المصاريف في حال انخفاض المبيعات عن التوقعات:</p>
             </div>
             <div class="sensitivity-options" id="sensitivity-btn-group">
-              <button type="button" class="sensitivity-btn active" data-discount="0">السيناريو الأساسي (100%)</button>
-              <button type="button" class="sensitivity-btn" data-discount="15">انخفاض 15% في المبيعات</button>
-              <button type="button" class="sensitivity-btn" data-discount="25">انخفاض 25% (سيناريو حرج)</button>
+              <button type="button" class="sensitivity-btn active" data-discount="0">السيناريو الأساسي (١٠٠٪)</button>
+              <button type="button" class="sensitivity-btn" data-discount="15">انخفاض ١٥٪ في المبيعات</button>
+              <button type="button" class="sensitivity-btn" data-discount="25">انخفاض ٢٥٪ (سيناريو حرج)</button>
             </div>
           </div>
         </div>
@@ -813,9 +611,9 @@
             <p id="rep-location-title">المملكة العربية السعودية • الرياض - حي الملقا (شارع تجاري رئيسي)</p>
           </div>
           <div class="report-meta-box">
-            <div>تاريخ إعداد الدراسة: <strong id="rep-date-label">16 سبتمبر 2026م</strong></div>
+            <div>تاريخ إعداد الدراسة: <strong id="rep-date-label">١٦ سبتمبر ٢٠٢٦م</strong></div>
             <div>العملة المعتمدة: <strong>الريال السعودي (ر.س)</strong></div>
-            <div>المساحة المقدرة: <strong id="rep-area-label" class="num-font">80 م²</strong></div>
+            <div>المساحة المقدرة: <strong id="rep-area-label" class="num-font">٨٠ م<sup class="num-font">٢</sup></strong></div>
           </div>
         </div>
 
@@ -823,26 +621,26 @@
         <div class="report-kpi-grid">
           <div class="kpi-card">
             <div class="kpi-label">إجمالي النفقات التأسيسية والاستثمارية</div>
-            <div class="kpi-value" id="rep-capex-val">282,000 ر.س</div>
+            <div class="kpi-value" id="rep-capex-val">٢٨٢٬٠٠٠ ر.س</div>
             <div class="kpi-subtext">شاملة التراخيص والتجهيز والأجهزة والسيولة الأولية</div>
           </div>
 
           <div class="kpi-card kpi-accent">
             <div class="kpi-label">صافي الربح السنوي المقدر</div>
-            <div class="kpi-value" id="rep-net-profit-val">748,200 ر.س</div>
-            <div class="kpi-subtext" id="rep-margin-subtext">هامش صافي ربح 22.4%</div>
+            <div class="kpi-value" id="rep-net-profit-val">٧٤٨٬٢٠٠ ر.س</div>
+            <div class="kpi-subtext" id="rep-margin-subtext">هامش صافي ربح ٢٢٫٤٪</div>
           </div>
 
           <div class="kpi-card kpi-neutral">
             <div class="kpi-label">فترة استرداد رأس المال التقديرية</div>
-            <div class="kpi-value" id="rep-payback-val">سنة و 2 شهر</div>
-            <div class="kpi-subtext" id="rep-score-subtext">مؤشر الجدوى: 82 / 100</div>
+            <div class="kpi-value" id="rep-payback-val">سنة و ٢ شهر</div>
+            <div class="kpi-subtext" id="rep-score-subtext">مؤشر الجدوى: ٨٢ / ١٠٠</div>
           </div>
         </div>
 
         <!-- 1. تفصيل الدخل والمبيعات -->
         <div class="report-section">
-          <h3 class="report-section-title">1. تقدير المبيعات والدخل الإجمالي</h3>
+          <h3 class="report-section-title">١. تقدير المبيعات والدخل الإجمالي</h3>
           <div class="report-table-wrapper">
             <table class="report-table">
               <thead>
@@ -850,17 +648,17 @@
                   <th>البند التقديري</th>
                   <th>المعامل المعتمد</th>
                   <th>الدخل اليومي</th>
-                  <th>الدخل الشهري (30 يوماً)</th>
+                  <th>الدخل الشهري (٣٠ يوماً)</th>
                   <th>الدخل السنوي الإجمالي</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td class="highlight">مبيعات النشاط المباشرة</td>
-                  <td id="rep-table-formula" class="num-font">160 عميل × 26 ر.س للطلب</td>
-                  <td id="rep-table-daily-rev" class="num-font">4,160 ر.س</td>
-                  <td id="rep-table-monthly-rev" class="num-font">124,800 ر.س</td>
-                  <td id="rep-table-annual-rev" class="num-font highlight">1,497,600 ر.س</td>
+                  <td id="rep-table-formula" class="num-font">١٦٠ عميل × ٢٦ ر.س للطلب</td>
+                  <td id="rep-table-daily-rev" class="num-font">٤٬١٦٠ ر.س</td>
+                  <td id="rep-table-monthly-rev" class="num-font">١٢٤٬٨٠٠ ر.س</td>
+                  <td id="rep-table-annual-rev" class="num-font highlight">١٬٤٩٧٬٦٠٠ ر.س</td>
                 </tr>
               </tbody>
             </table>
@@ -869,7 +667,7 @@
 
         <!-- 2. هيكل التكاليف -->
         <div class="report-section">
-          <h3 class="report-section-title">2. هيكل التكاليف التأسيسية والمصاريف التشغيلية</h3>
+          <h3 class="report-section-title">٢. هيكل التكاليف التأسيسية والمصاريف التشغيلية</h3>
           
           <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--steel-light); margin-bottom: 0.8rem;">أ. النفقات التأسيسية والاستثمارية:</h4>
           <div class="report-table-wrapper">
@@ -907,7 +705,7 @@
 
         <!-- 3. الرسوم البيانية المتجاورة (مماثلة للبروتوتايب) -->
         <div class="report-section">
-          <h3 class="report-section-title">3. التحليل البياني لتوزيع المصاريف ومسار التدفق النقدي</h3>
+          <h3 class="report-section-title">٣. التحليل البياني لتوزيع المصاريف ومسار التدفق النقدي</h3>
           
           <div class="charts-split-grid">
             <!-- الرسم الدائري لتوزيع المصاريف التشغيلية -->
@@ -927,7 +725,7 @@
 
             <!-- الرسم الخطي لمسار التدفق النقدي المتراكم -->
             <div class="chart-card">
-              <h4 class="chart-title">مسار التدفق النقدي المتراكم ونقطة استرداد رأس المال (24 شهراً)</h4>
+              <h4 class="chart-title">مسار التدفق النقدي المتراكم ونقطة استرداد رأس المال (٢٤ شهراً)</h4>
               <div class="cashflow-svg-container" id="cashflow-svg-box">
                 <!-- يتم توليد رسم التدفق البياني SVG عبر JS -->
               </div>
@@ -942,7 +740,7 @@
 
         <!-- 4. مصفوفة المخاطر المحددة -->
         <div class="report-section">
-          <h3 class="report-section-title">4. مصفوفة المخاطر التشغيلية والمالية المحددة</h3>
+          <h3 class="report-section-title">٤. مصفوفة المخاطر التشغيلية والمالية المحددة</h3>
           <div class="risks-container" id="rep-risks-container">
             <!-- حقن كروت المخاطر -->
           </div>
@@ -950,7 +748,7 @@
 
         <!-- 5. النصائح الاستراتيجية المخصصة -->
         <div class="report-section">
-          <h3 class="report-section-title">5. النصائح الاستراتيجية المخصصة لمشروعك بالسوق السعودي</h3>
+          <h3 class="report-section-title">٥. النصائح الاستراتيجية المخصصة لمشروعك بالسوق السعودي</h3>
           <div class="recommendations-grid" id="rep-recommendations-container">
             <!-- حقن كروت التوصيات -->
           </div>
@@ -960,7 +758,7 @@
     </section>
 
     <!-- أزرار التنقل السفلية بين المراحل -->
-    <div class="navigation-bar" id="stage-nav-bar">
+    <div class="navigation-bar" id="stage-nav-bar" style="display: none;">
       <button type="button" class="btn btn-secondary" id="btn-prev-stage" disabled>
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 12h14"></path>
@@ -979,7 +777,7 @@
 
     <!-- تذييل إخلاء المسؤولية الرسمي -->
     <footer class="legal-disclaimer">
-      <strong>تنويه استرشادي نظامي:</strong> جميع المؤشرات والأرقام والنسب الواردة في منصة «مُدار» هي نماذج تخطيطية استرشادية مبنية على البيانات المدخلة ومتوسطات السوق التجاري في المملكة العربية السعودية لعام 1447هـ، ولا تعتبر وثيقة تمويل مصرفية أو ضماناً نهائياً للأرباح. يُنصح رواد الأعمال دائماً بالمعاينة الميدانية واستكمال كافة متطلبات التراخيص والجهات الرسمية (منصة بلدي، وزارة التجارة، الدفاع المدني، الهيئة العامة للمنشآت الصغيرة والمتوسطة، التأمينات الاجتماعية) قبل الارتباط المالي أو توقيع عقود الإيجار.
+      <strong>تنويه استرشادي نظامي:</strong> جميع المؤشرات والأرقام والنسب الواردة في منصة «مُدار» هي نماذج تخطيطية استرشادية مبنية على البيانات المدخلة ومتوسطات السوق التجاري في المملكة العربية السعودية.
     </footer>
 
   </div>

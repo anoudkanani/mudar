@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     stageSections: document.querySelectorAll(".stage-section"),
     btnPrevStage: document.getElementById("btn-prev-stage"),
     btnNextStage: document.getElementById("btn-next-stage"),
+    stageNavBar: document.getElementById("stage-nav-bar"),
 
     // المرحلة 1: لاندنق بيج السلايدات
     landingHeroSlider: document.getElementById("landing-hero-slider"),
@@ -65,18 +66,29 @@ document.addEventListener("DOMContentLoaded", () => {
     factorPositiveList: document.getElementById("factor-positive-list"),
     factorCautionList: document.getElementById("factor-caution-list"),
 
-    // المرحلة 5: المحاكاة المالية
+    // المرحلة 5: حساب الدخل والتكاليف التقديرية (نتائج تلقائية بدون تعديل)
     tabNavBtns: document.querySelectorAll(".tab-nav-btn"),
     financialTabPanes: document.querySelectorAll(".financial-tab-pane"),
-    btnResetBenchmarks: document.getElementById("btn-reset-benchmarks"),
-    displayMonthlyRent: document.getElementById("display-monthly-rent"),
-    rentCalcArea: document.getElementById("rent-calc-area"),
     liveTotalCapex: document.getElementById("live-total-capex"),
     liveMonthlyRevenue: document.getElementById("live-monthly-revenue"),
     liveMonthlyOpex: document.getElementById("live-monthly-opex"),
     liveNetProfit: document.getElementById("live-net-profit"),
-    finInputs: document.querySelectorAll(".fin-input"),
-    finSliders: document.querySelectorAll(".fin-slider"),
+    valLicensing: document.getElementById("val-licensing"),
+    valFitout: document.getElementById("val-fitout"),
+    valEquipment: document.getElementById("val-equipment"),
+    valWorkingCap: document.getElementById("val-working-cap"),
+    valMonthlyRent: document.getElementById("val-monthly-rent"),
+    valLabor: document.getElementById("val-labor"),
+    valCogsCost: document.getElementById("val-cogs-cost"),
+    displayCogsPercent: document.getElementById("display-cogs-percent"),
+    valUtilities: document.getElementById("val-utilities"),
+    valMarketing: document.getElementById("val-marketing"),
+    valDailyVisitors: document.getElementById("val-daily-visitors"),
+    valAvgTicket: document.getElementById("val-avg-ticket"),
+    valDailyRevenue: document.getElementById("val-daily-revenue"),
+    valWorkingDays: document.getElementById("val-working-days"),
+    calcVisitorsText: document.getElementById("calc-visitors-text"),
+    calcTicketText: document.getElementById("calc-ticket-text"),
 
     // المرحلة 6: مؤشر النجاح والمخاطر
     svgGaugeProgress: document.getElementById("svg-gauge-progress"),
@@ -136,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderDistrictPills();
     renderCommercialZones();
     bindEvents();
-    syncFinancialInputsWithSelectedActivity();
+    renderStage5Results();
     updateAllModel();
   }
 
@@ -238,17 +250,19 @@ document.addEventListener("DOMContentLoaded", () => {
       state.maxStepReached = step;
     }
 
-    // تحديث شريط الخطوات (Stepper UI)
-    const stepTabs = DOM.stepperNavList.querySelectorAll(".stepper-tab");
-    stepTabs.forEach((tab, idx) => {
-      const stepIndex = idx + 1;
-      tab.classList.remove("active", "completed");
-      if (stepIndex === step) {
-        tab.classList.add("active");
-      } else if (stepIndex < step) {
-        tab.classList.add("completed");
-      }
-    });
+    // تحديث شريط الخطوات (Stepper UI) إن وجد
+    if (DOM.stepperNavList) {
+      const stepTabs = DOM.stepperNavList.querySelectorAll(".stepper-tab");
+      stepTabs.forEach((tab, idx) => {
+        const stepIndex = idx + 1;
+        tab.classList.remove("active", "completed");
+        if (stepIndex === step) {
+          tab.classList.add("active");
+        } else if (stepIndex < step) {
+          tab.classList.add("completed");
+        }
+      });
+    }
 
     // إظهار القسم المطلوب وإخفاء الآخر
     DOM.stageSections.forEach((section, idx) => {
@@ -260,19 +274,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // تحديث شريط التنقل السفلي
     if (step === 1) {
+      if (DOM.stageNavBar) DOM.stageNavBar.style.display = "none";
       DOM.btnPrevStage.disabled = true;
-      DOM.btnNextStage.style.display = "inline-flex";
-      DOM.btnNextStage.innerHTML = `
-        <span>${STEP_LABELS[2]}</span>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M19 12H5"></path>
-          <path d="M12 19l-7-7 7-7"></path>
-        </svg>
-      `;
+      DOM.btnNextStage.style.display = "none";
     } else if (step === 7) {
+      if (DOM.stageNavBar) DOM.stageNavBar.style.display = "flex";
       DOM.btnPrevStage.disabled = false;
       DOM.btnNextStage.style.display = "none";
     } else {
+      if (DOM.stageNavBar) DOM.stageNavBar.style.display = "flex";
       DOM.btnPrevStage.disabled = false;
       DOM.btnNextStage.style.display = "inline-flex";
       const nextStep = step + 1;
@@ -288,6 +298,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // تشغيل التحديثات الخاصة بالمرحلة
     if (step === 4) {
       renderLocationAnalysis();
+    } else if (step === 5) {
+      renderStage5Results();
     } else if (step === 6) {
       renderSuccessGaugeAndRisks();
     } else if (step === 7) {
@@ -355,18 +367,17 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
         <div class="activity-meta-row">
-          <span>المساحة النموذجية المقترحة: <strong class="num-font">${act.recommendedArea} م²</strong></span>
-          <span>${isSelected ? "محدد حالياً" : "اختر النشاط"}</span>
+          <span>المساحة النموذجية المقترحة: <strong class="num-font">${MadarCalculator.toArabicDigits(act.recommendedArea)} م<sup class="num-font">٢</sup></strong></span>
         </div>
       `;
 
       card.addEventListener("click", () => {
         state.selectedActivityId = act.id;
         state.spaceArea = act.recommendedArea;
-        DOM.areaInput.value = act.recommendedArea;
-        DOM.recommendedAreaBadge.textContent = act.recommendedArea;
+        DOM.areaInput.value = MadarCalculator.toArabicDigits(act.recommendedArea);
+        DOM.recommendedAreaBadge.textContent = MadarCalculator.toArabicDigits(act.recommendedArea);
         renderActivitiesGrid();
-        syncFinancialInputsWithSelectedActivity();
+        renderStage5Results();
         updateAllModel();
       });
 
@@ -393,7 +404,7 @@ document.addEventListener("DOMContentLoaded", () => {
         renderCitiesGrid();
         renderDistrictPills();
         updateLocationPreview();
-        syncFinancialInputsWithSelectedActivity();
+        renderStage5Results();
         updateAllModel();
       });
       DOM.citiesGridContainer.appendChild(card);
@@ -416,13 +427,13 @@ document.addEventListener("DOMContentLoaded", () => {
       pill.className = `district-pill ${isSelected ? "selected" : ""}`;
       pill.innerHTML = `
         <div class="district-pill-name">${dist.name}</div>
-        <div class="district-pill-price">${MadarCalculator.formatSAR(dist.avgRentPerMeter)} / م²</div>
+        <div class="district-pill-price">${MadarCalculator.formatSAR(dist.avgRentPerMeter)} لكل م<sup class="num-font">٢</sup></div>
       `;
       pill.addEventListener("click", () => {
         state.selectedDistrictId = dist.id;
         renderDistrictPills();
         updateLocationPreview();
-        syncFinancialInputsWithSelectedActivity();
+        renderStage5Results();
         updateAllModel();
       });
       DOM.districtPillsContainer.appendChild(pill);
@@ -443,7 +454,7 @@ document.addEventListener("DOMContentLoaded", () => {
         state.selectedZoneId = zone.id;
         renderCommercialZones();
         updateLocationPreview();
-        syncFinancialInputsWithSelectedActivity();
+        renderStage5Results();
         updateAllModel();
       });
       DOM.commercialZonesContainer.appendChild(card);
@@ -457,14 +468,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     DOM.previewLocName.textContent = `${city.name} - ${district.name}`;
     DOM.previewLocDesc.textContent = district.description;
-    DOM.previewRentMeter.textContent = `${MadarCalculator.formatSAR(effectiveRentMeter)} / م² سنويًا`;
+    DOM.previewRentMeter.innerHTML = `${MadarCalculator.formatSAR(effectiveRentMeter)} لكل م<sup class="num-font">٢</sup> سنويًا`;
     DOM.previewTotalRent.textContent = MadarCalculator.formatSAR(totalAnnualRent);
     DOM.previewTraffic.textContent = district.trafficLevel;
     DOM.previewPurchasing.textContent = district.purchasingPower;
 
     // تحديث عرض مساحة الإيجار في المرحلة 5
     if (DOM.rentCalcArea) {
-      DOM.rentCalcArea.textContent = state.spaceArea;
+      DOM.rentCalcArea.textContent = MadarCalculator.toArabicDigits(state.spaceArea);
     }
   }
 
@@ -480,7 +491,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (zone.id === "commercial_street" || zone.id === "strip_mall") baseScore += 4;
     const score = Math.min(96, baseScore);
 
-    DOM.fitScoreVal.textContent = `${score}%`;
+    DOM.fitScoreVal.textContent = `${MadarCalculator.toArabicDigits(score)}٪`;
     DOM.fitHeadline.textContent = `الموقع ملائم جداً لنشاط ${activity.title}`;
     DOM.fitParagraph.textContent = `يتميز ${district.name} بحركة تجارية نشطة وقوة شرائية متوافقة مع نمط وأسعار نشاط ${activity.title}، مع توفر فرص استقطاب ممتازة لرواد الشارع التجاري.`;
 
@@ -495,39 +506,44 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
     DOM.factorCautionList.innerHTML = `
-      <li>متوسط إيجار المتر (${district.avgRentPerMeter} ر.س) يتطلب كفاءة تشغيلية وتدفقاً ثابتاً للمبيعات.</li>
+      <li>متوسط إيجار المتر (${MadarCalculator.formatSAR(district.avgRentPerMeter)}) يتطلب كفاءة تشغيلية وتدفقاً ثابتاً للمبيعات.</li>
       <li>ضرورة استكمال اشتراطات منصة بلدي والدفاع المدني الخاصة بالمساحة والواجهات.</li>
       <li>الحرص على استراتيجيات تسويق نوعية للتميز في ظل وجود بدائل تجارية قريبة.</li>
     `;
   }
 
   // =========================================================================
-  // المرحلة 5: المحاكاة المالية التفاعلية
+  // المرحلة 5: حساب الدخل والتكاليف التقديرية (محسوبة آلياً بدون تعديل يدوي)
   // =========================================================================
-  function syncFinancialInputsWithSelectedActivity() {
+  function renderStage5Results() {
     const { activity, district, zone } = getCurrentObjects();
-    const effectiveRentMeter = Math.round(district.avgRentPerMeter * zone.rentMultiplier);
-    const annualRent = Math.round(effectiveRentMeter * state.spaceArea);
-    const monthlyRent = Math.round(annualRent / 12);
+    const model = updateAllModel();
 
-    DOM.displayMonthlyRent.value = MadarCalculator.formatNumber(monthlyRent);
+    if (DOM.valLicensing) DOM.valLicensing.textContent = MadarCalculator.formatSAR(model.capex.licensing);
+    if (DOM.valFitout) DOM.valFitout.textContent = MadarCalculator.formatSAR(model.capex.fitout);
+    if (DOM.valEquipment) DOM.valEquipment.textContent = MadarCalculator.formatSAR(model.capex.equipment);
+    if (DOM.valWorkingCap) DOM.valWorkingCap.textContent = MadarCalculator.formatSAR(model.capex.initialWorkingCap);
 
-    // تحديث قيم الحقول المالية من النشاط ما لم تكن مخصصة
-    DOM.finInputs.forEach(input => {
-      const field = input.getAttribute("data-field");
-      let val = state.customInputs[field];
+    if (DOM.valMonthlyRent) DOM.valMonthlyRent.textContent = MadarCalculator.formatSAR(model.opex.monthlyRent);
+    if (DOM.valLabor) DOM.valLabor.textContent = MadarCalculator.formatSAR(model.opex.laborCost);
+    if (DOM.valCogsCost) DOM.valCogsCost.textContent = MadarCalculator.formatSAR(model.opex.cogsMonthly);
+    if (DOM.displayCogsPercent) DOM.displayCogsPercent.textContent = MadarCalculator.toArabicDigits(model.opex.cogsPercent);
+    if (DOM.valUtilities) DOM.valUtilities.textContent = MadarCalculator.formatSAR(model.opex.utilities);
+    if (DOM.valMarketing) DOM.valMarketing.textContent = MadarCalculator.formatSAR(model.opex.marketingMaintenance);
 
-      if (val === undefined) {
-        if (activity.capex[field] !== undefined) val = activity.capex[field];
-        else if (activity.opex[field] !== undefined) val = activity.opex[field];
-        else if (activity.revenueDefaults[field] !== undefined) val = activity.revenueDefaults[field];
-      }
+    if (DOM.valDailyVisitors) DOM.valDailyVisitors.textContent = MadarCalculator.toArabicDigits(model.revenue.dailyVisitors);
+    if (DOM.valAvgTicket) DOM.valAvgTicket.textContent = MadarCalculator.formatSAR(model.revenue.avgTicket);
+    if (DOM.valDailyRevenue) DOM.valDailyRevenue.textContent = MadarCalculator.formatSAR(model.revenue.daily);
+    if (DOM.valWorkingDays) DOM.valWorkingDays.textContent = MadarCalculator.toArabicDigits(model.revenue.daysPerMonth);
 
-      if (val !== undefined) {
-        input.value = val;
-        const slider = document.querySelector(`.fin-slider[data-target="${input.id}"]`);
-        if (slider) slider.value = val;
-      }
+    if (DOM.calcVisitorsText) DOM.calcVisitorsText.textContent = MadarCalculator.toArabicDigits(model.revenue.dailyVisitors);
+    if (DOM.calcTicketText) DOM.calcTicketText.textContent = MadarCalculator.formatSAR(model.revenue.avgTicket);
+
+    document.querySelectorAll(".display-area-tag").forEach(el => {
+      el.textContent = MadarCalculator.toArabicDigits(state.spaceArea);
+    });
+    document.querySelectorAll(".display-district-name").forEach(el => {
+      el.textContent = district.name;
     });
   }
 
@@ -557,7 +573,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     const score = model.scoreResult.score;
-    DOM.gaugeScoreNumber.textContent = score;
+    DOM.gaugeScoreNumber.textContent = MadarCalculator.toArabicDigits(score);
     DOM.gaugeStatusBadge.textContent = model.scoreResult.label;
     DOM.gaugeSummaryText.textContent = model.scoreResult.summary;
 
@@ -598,17 +614,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. معلومات الترويسة
     DOM.repActivityTitle.textContent = activity.title;
     DOM.repLocationTitle.textContent = `المملكة العربية السعودية • ${city.name} - ${district.name} (${zone.name})`;
-    DOM.repAreaLabel.textContent = `${model.area} م²`;
+    DOM.repAreaLabel.innerHTML = `${MadarCalculator.toArabicDigits(model.area)} م<sup class="num-font">٢</sup>`;
+    if (DOM.repDateLabel) {
+      DOM.repDateLabel.textContent = new Date().toLocaleDateString('ar-SA-u-nu-arab', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
 
     // 2. كروت المؤشرات الكبرى
     DOM.repCapexVal.textContent = MadarCalculator.formatSAR(model.capex.total);
     DOM.repNetProfitVal.textContent = MadarCalculator.formatSAR(model.netProfitAnnual);
-    DOM.repMarginSubtext.textContent = `هامش صافي ربح سنوي ${model.netProfitMargin}%`;
+    DOM.repMarginSubtext.textContent = `هامش صافي ربح سنوي ${MadarCalculator.toArabicDigits(model.netProfitMargin)}٪`;
     DOM.repPaybackVal.textContent = model.paybackText;
-    DOM.repScoreSubtext.textContent = `مؤشر الجدوى والنجاح: ${model.scoreResult.score} / 100`;
+    DOM.repScoreSubtext.textContent = `مؤشر الجدوى والنجاح: ${MadarCalculator.toArabicDigits(model.scoreResult.score)} / ١٠٠`;
 
     // 3. جدول تقدير المبيعات والدخل
-    DOM.repTableFormula.textContent = `${model.revenue.dailyVisitors} عميل × ${MadarCalculator.formatSAR(model.revenue.avgTicket)} للطلب`;
+    DOM.repTableFormula.textContent = `${MadarCalculator.toArabicDigits(model.revenue.dailyVisitors)} عميل × ${MadarCalculator.formatSAR(model.revenue.avgTicket)} للطلب`;
     DOM.repTableDailyRev.textContent = MadarCalculator.formatSAR(model.revenue.daily);
     DOM.repTableMonthlyRev.textContent = MadarCalculator.formatSAR(model.revenue.monthly);
     DOM.repTableAnnualRev.textContent = MadarCalculator.formatSAR(model.revenue.annual);
@@ -632,7 +651,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </tr>
       <tr>
         <td class="highlight">السيولة العاملة واحتياطي الطوارئ</td>
-        <td>مخزون تشغيلي أولي وسيولة احتياطية لأول 60 إلى 90 يوماً من الانطلاق.</td>
+        <td>مخزون تشغيلي أولي وسيولة احتياطية لأول ٦٠ إلى ٩٠ يوماً من الانطلاق.</td>
         <td class="num-font highlight">${MadarCalculator.formatSAR(model.capex.initialWorkingCap)}</td>
       </tr>
       <tr style="background: var(--bg-surface-elevated); font-weight: 800;">
@@ -660,7 +679,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <td class="highlight">${item.name}</td>
           <td class="num-font">${MadarCalculator.formatSAR(item.monthly)}</td>
           <td class="num-font">${MadarCalculator.formatSAR(annual)}</td>
-          <td class="num-font">${share}%</td>
+          <td class="num-font">${MadarCalculator.toArabicDigits(share)}٪</td>
         </tr>
       `;
     });
@@ -670,7 +689,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <td style="color: var(--steel-light);">إجمالي المصاريف التشغيلية الدورية</td>
         <td class="num-font" style="color: var(--steel-light); font-size: 1.05rem;">${MadarCalculator.formatSAR(model.opex.totalMonthly)}</td>
         <td class="num-font" style="color: var(--steel-light); font-size: 1.05rem;">${MadarCalculator.formatSAR(model.opex.totalAnnual)}</td>
-        <td class="num-font" style="color: var(--steel-light);">100%</td>
+        <td class="num-font" style="color: var(--steel-light);">١٠٠٪</td>
       </tr>
     `;
     DOM.repOpexTableBody.innerHTML = opexRowsHtml;
@@ -711,7 +730,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // رسم الدونات البياني لتوزيع المصاريف (Donut Chart)
   function renderDonutChart(items, totalMonthly) {
     if (totalMonthly <= 0) return;
-    const colors = ["#285172", "#356790", "#8FA0AA", "#B3C4CC", "#78656B"];
+    const colors = ["#285172", "#415C47", "#556B7C", "#B3C4CC", "#78656B"];
     let accumulatedPercent = 0;
 
     let svgCircles = "";
@@ -738,7 +757,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="donut-legend-color" style="background: ${color};"></span>
             <span>${item.name}</span>
           </div>
-          <span class="num-font" style="font-weight: 700; color: var(--steel-light);">${percent.toFixed(1)}%</span>
+          <span class="num-font" style="font-weight: 700; color: var(--steel-light);">${MadarCalculator.toArabicDigits(percent.toFixed(1))}٪</span>
         </div>
       `;
 
@@ -791,14 +810,14 @@ document.addEventListener("DOMContentLoaded", () => {
       // إظهار نقاط محددة (كل 4 شهور)
       if (pt.month % 4 === 0 || pt.month === 24) {
         pointsHtml += `
-          <circle cx="${x}" cy="${y}" r="3.5" fill="#E5EAEE" stroke="#285172" stroke-width="2"></circle>
+          <circle cx="${x}" cy="${y}" r="3.5" fill="#FFFFFF" stroke="#285172" stroke-width="2"></circle>
         `;
       }
 
       if (pt.isBreakeven) {
         breakevenCircle = `
-          <circle cx="${x}" cy="${zeroY}" r="6.5" fill="#E5EAEE" stroke="#285172" stroke-width="2.5"></circle>
-          <text x="${x}" y="${zeroY - 10}" fill="#E5EAEE" font-size="10.5" font-weight="bold" text-anchor="middle">
+          <circle cx="${x}" cy="${zeroY}" r="6.5" fill="#FFFFFF" stroke="#415C47" stroke-width="2.5"></circle>
+          <text x="${x}" y="${zeroY - 10}" fill="#162636" font-size="11" font-weight="bold" font-family="'Tajawal', sans-serif" text-anchor="middle">
             التعادل (${pt.label})
           </text>
         `;
@@ -809,8 +828,8 @@ document.addEventListener("DOMContentLoaded", () => {
       <svg viewBox="0 0 ${width} ${height}">
         <!-- خط الصفر المرجعي -->
         <line x1="${padding.left}" y1="${zeroY}" x2="${width - padding.right}" y2="${zeroY}" 
-              stroke="rgba(179, 196, 204, 0.3)" stroke-width="1.5" stroke-dasharray="4 4"></line>
-        <text x="${padding.left - 8}" y="${zeroY + 4}" fill="#8FA0AA" font-size="10" text-anchor="end">0 ر.س</text>
+              stroke="#B3C4CC" stroke-width="1.5" stroke-dasharray="4 4"></line>
+        <text x="${padding.left - 8}" y="${zeroY + 4}" fill="#556B7C" font-size="10" font-family="'Tajawal', sans-serif" text-anchor="end">٠ ر.س</text>
 
         <!-- خط مسار الاستثمار والتدفق -->
         <path d="${pathD}" fill="none" stroke="url(#cashflowGrad)" stroke-width="3" stroke-linecap="round"></path>
@@ -818,7 +837,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <defs>
           <linearGradient id="cashflowGrad" x1="0%" y1="100%" x2="100%" y2="0%">
             <stop offset="0%" stop-color="#78656B"></stop>
-            <stop offset="45%" stop-color="#8FA0AA"></stop>
+            <stop offset="50%" stop-color="#8FA0AA"></stop>
             <stop offset="100%" stop-color="#285172"></stop>
           </linearGradient>
         </defs>
@@ -827,12 +846,22 @@ document.addEventListener("DOMContentLoaded", () => {
         ${pointsHtml}
 
         <!-- مؤشرات الشهور -->
-        <text x="${padding.left}" y="${height - 10}" fill="#8FA0AA" font-size="10.5" text-anchor="middle">البداية</text>
-        <text x="${width - padding.right}" y="${height - 10}" fill="#8FA0AA" font-size="10.5" text-anchor="middle">24 شهراً</text>
+        <text x="${padding.left}" y="${height - 10}" fill="#556B7C" font-size="10.5" font-family="'Tajawal', sans-serif" text-anchor="middle">البداية</text>
+        <text x="${width - padding.right}" y="${height - 10}" fill="#556B7C" font-size="10.5" font-family="'Tajawal', sans-serif" text-anchor="middle">٢٤ شهراً</text>
 
         ${breakevenCircle}
       </svg>
     `;
+  }
+
+  // دالة مساعدة لتحويل أي نص أرقام (سواء عربية مشرقية أو إنجليزية أو بفواصل) إلى رقم JS عشري
+  function parseArabicDigits(str) {
+    if (typeof str === "number") return str;
+    if (!str) return 0;
+    const western = String(str)
+      .replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d))
+      .replace(/[^\d.-]/g, "");
+    return parseFloat(western) || 0;
   }
 
   // =========================================================================
@@ -850,16 +879,18 @@ document.addEventListener("DOMContentLoaded", () => {
     DOM.btnNextStage.addEventListener("click", () => goToStep(state.currentStep + 1));
     DOM.btnPrevStage.addEventListener("click", () => goToStep(state.currentStep - 1));
 
-    // أزرار شريط التبويبات العلوي (Stepper)
-    const stepTabs = DOM.stepperNavList.querySelectorAll(".stepper-tab");
-    stepTabs.forEach((tab, idx) => {
-      tab.addEventListener("click", () => {
-        const targetStep = idx + 1;
-        if (targetStep <= state.maxStepReached) {
-          goToStep(targetStep);
-        }
+    // أزرار شريط التبويبات العلوي (Stepper) إن وُجدت
+    if (DOM.stepperNavList) {
+      const stepTabs = DOM.stepperNavList.querySelectorAll(".stepper-tab");
+      stepTabs.forEach((tab, idx) => {
+        tab.addEventListener("click", () => {
+          const targetStep = idx + 1;
+          if (targetStep <= state.maxStepReached) {
+            goToStep(targetStep);
+          }
+        });
       });
-    });
+    }
 
     // البحث في الأنشطة
     DOM.activitySearchInput.addEventListener("input", (e) => {
@@ -869,10 +900,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // إدخال المساحة
     DOM.areaInput.addEventListener("input", (e) => {
-      state.spaceArea = Number(e.target.value) || 80;
+      const parsed = parseArabicDigits(e.target.value);
+      state.spaceArea = parsed || 80;
       updateLocationPreview();
-      syncFinancialInputsWithSelectedActivity();
+      renderStage5Results();
       updateAllModel();
+    });
+
+    DOM.areaInput.addEventListener("blur", (e) => {
+      e.target.value = MadarCalculator.toArabicDigits(state.spaceArea);
     });
 
     // تبويبات المحاكي المالي
@@ -887,42 +923,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // مزامنة حقول الإدخال المالية والأشرطة التمريرية
-    DOM.finInputs.forEach(input => {
-      input.addEventListener("input", (e) => {
-        const field = e.target.getAttribute("data-field");
-        const val = Number(e.target.value) || 0;
-        state.customInputs[field] = val;
 
-        const slider = document.querySelector(`.fin-slider[data-target="${e.target.id}"]`);
-        if (slider) slider.value = val;
-
-        updateAllModel();
-      });
-    });
-
-    DOM.finSliders.forEach(slider => {
-      slider.addEventListener("input", (e) => {
-        const targetId = e.target.getAttribute("data-target");
-        const input = document.getElementById(targetId);
-        if (input) {
-          input.value = e.target.value;
-          const field = input.getAttribute("data-field");
-          state.customInputs[field] = Number(e.target.value) || 0;
-          updateAllModel();
-        }
-      });
-    });
-
-    // زر استعادة المعايير المرجعية
-    DOM.btnResetBenchmarks.addEventListener("click", () => {
-      state.customInputs = {};
-      state.sensitivityDiscount = 0;
-      DOM.sensitivityBtns.forEach(b => b.classList.remove("active"));
-      DOM.sensitivityBtns[0].classList.add("active");
-      syncFinancialInputsWithSelectedActivity();
-      updateAllModel();
-    });
 
     // أزرار اختبار الحساسية
     DOM.sensitivityBtns.forEach(btn => {

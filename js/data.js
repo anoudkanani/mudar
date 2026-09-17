@@ -22,7 +22,7 @@ const MADAR_DATA = {
       categoryId: "food_beverage",
       title: "مقهى مختص",
       shortDesc: "مقهى يقدم مشروبات القهوة المتخصصة والمشروبات الباردة والمخبوزات الخفيفة.",
-      recommendedArea: 80, // م²
+      recommendedArea: 80, // متر مربع
       defaultZone: "commercial_street",
       capex: {
         licensing: 12000,     // تراخيص بلدية، دفاع مدني، سجل تجاري
@@ -294,7 +294,7 @@ const MADAR_DATA = {
     {
       id: "commercial_street",
       name: "شارع تجاري رئيسي",
-      description: "واجهة مباشرة على شارع عام بعرض 30 متراً فأكثر مع سهولة الرؤية والوصول المباشر.",
+      description: "واجهة مباشرة على شارع عام بعرض ٣٠ متراً فأكثر مع سهولة الرؤية والوصول المباشر.",
       rentMultiplier: 1.0,
       trafficMultiplier: 1.0
     },

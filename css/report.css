@@ -91,10 +91,11 @@
   position: relative;
   overflow: hidden;
   border-right: 4px solid var(--slate-dark-blue);
+  box-shadow: var(--shadow-sm);
 }
 
 .kpi-card.kpi-accent {
-  border-right-color: var(--steel-medium);
+  border-right-color: var(--olive-accent);
 }
 
 .kpi-card.kpi-neutral {
@@ -117,7 +118,7 @@
 
 .kpi-subtext {
   font-size: 0.8rem;
-  color: var(--steel-medium);
+  color: var(--slate-gray);
 }
 
 /* أقسام التقرير العريضة */
@@ -149,7 +150,7 @@
 }
 
 .report-table thead {
-  background: var(--bg-surface-elevated);
+  background: #EDF3F7;
   border-bottom: 1px solid var(--border-medium);
 }
 
@@ -279,9 +280,9 @@
 }
 
 .recommendation-card-category {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--steel-medium);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--slate-dark-blue);
   margin-bottom: 0.35rem;
 }
 

@@ -103,10 +103,15 @@ const MadarCalculator = {
     const effectiveRentPerMeter = Math.round(avgRentPerMeter * zoneMultiplier);
     const annualRent = Math.round(effectiveRentPerMeter * currentArea);
 
+    // حساب تكلفة الديكور والتجهيز بالتناسب مع مساحة المحل المقترحة
+    const baseArea = activity.recommendedArea || 80;
+    const fitoutPerMeter = Math.round(activity.capex.fitout / baseArea);
+    const calculatedFitout = customInputs.fitout !== undefined ? Number(customInputs.fitout) : Math.round(fitoutPerMeter * currentArea);
+
     // دمج المدخلات المخصصة مع القيم المعيارية المرجعية
     const capexMerged = {
       licensing: customInputs.licensing !== undefined ? Number(customInputs.licensing) : activity.capex.licensing,
-      fitout: customInputs.fitout !== undefined ? Number(customInputs.fitout) : activity.capex.fitout,
+      fitout: calculatedFitout,
       equipment: customInputs.equipment !== undefined ? Number(customInputs.equipment) : activity.capex.equipment,
       initialWorkingCap: customInputs.initialWorkingCap !== undefined ? Number(customInputs.initialWorkingCap) : activity.capex.initialWorkingCap
     };
@@ -152,11 +157,11 @@ const MadarCalculator = {
       const remainingMonths = m % 12;
 
       if (years === 0) {
-        paybackText = `${remainingMonths} شهر`;
+        paybackText = `${this.toArabicDigits(remainingMonths)} شهر`;
       } else if (remainingMonths === 0) {
-        paybackText = `${years} ${years === 1 ? "سنة" : years === 2 ? "سنتان" : "سنوات"}`;
+        paybackText = `${this.toArabicDigits(years)} ${years === 1 ? "سنة" : years === 2 ? "سنتان" : "سنوات"}`;
       } else {
-        paybackText = `${years} سنة و ${remainingMonths} شهر`;
+        paybackText = `${this.toArabicDigits(years)} سنة و ${this.toArabicDigits(remainingMonths)} شهر`;
       }
     } else {
       paybackText = "المشروع لا يغطي مصاريفه";
@@ -338,7 +343,7 @@ const MadarCalculator = {
         level: "high",
         levelLabel: "مرتفع",
         color: "#78656B",
-        detail: `يشكل الإيجار ${params.rentToRevenueRatio}% من إجمالي الدخل المتوقع، والحد الآمن الموصى به لمعظم الأنشطة هو أقل من 15% إلى 18%.`
+        detail: `يشكل الإيجار ${this.toArabicDigits(params.rentToRevenueRatio)}٪ من إجمالي الدخل المتوقع، والحد الآمن الموصى به لمعظم الأنشطة هو أقل من ١٥٪ إلى ١٨٪.`
       });
     } else if (params.rentToRevenueRatio >= 16) {
       risks.push({
@@ -348,7 +353,7 @@ const MadarCalculator = {
         level: "medium",
         levelLabel: "متوسط",
         color: "#8FA0AA",
-        detail: `الإيجار يشكل ${params.rentToRevenueRatio}% من المبيعات، مما يقلص مرونة التسعير ويستوجب استمرار تدفق العملاء.`
+        detail: `الإيجار يشكل ${this.toArabicDigits(params.rentToRevenueRatio)}٪ من المبيعات، مما يقلص مرونة التسعير ويستوجب استمرار تدفق العملاء.`
       });
     }
 
@@ -356,12 +361,12 @@ const MadarCalculator = {
     if (params.paybackMonths > 36) {
       risks.push({
         id: "slow_payback",
-        title: "فترة استرداد ممتدة تتجاوز 3 سنوات",
+        title: "فترة استرداد ممتدة تتجاوز ٣ سنوات",
         type: "استثماري",
         level: "high",
         levelLabel: "مرتفع",
         color: "#78656B",
-        detail: `تحتاج إلى أكثر من ${Math.round(params.paybackMonths / 12)} سنوات لاسترجاع رأس المال الأولي، وهو ما يزيد من مخاطر تقادم التجهيزات وظهور منافسين.`
+        detail: `تحتاج إلى أكثر من ${this.toArabicDigits(Math.round(params.paybackMonths / 12))} سنوات لاسترجاع رأس المال الأولي، وهو ما يزيد من مخاطر تقادم التجهيزات وظهور منافسين.`
       });
     } else if (params.paybackMonths > 24) {
       risks.push({
@@ -371,7 +376,7 @@ const MadarCalculator = {
         level: "medium",
         levelLabel: "متوسط",
         color: "#8FA0AA",
-        detail: `استرداد رأس المال المقدر بـ ${params.paybackMonths} شهراً يتطلب الحفاظ على وتيرة مبيعات ثابتة خلال أول عامين دون هبوط ملحوظ.`
+        detail: `استرداد رأس المال المقدر بـ ${this.toArabicDigits(params.paybackMonths)} شهراً يتطلب الحفاظ على وتيرة مبيعات ثابتة خلال أول عامين دون هبوط ملحوظ.`
       });
     }
 
@@ -384,7 +389,7 @@ const MadarCalculator = {
         level: "high",
         levelLabel: "مرتفع",
         color: "#78656B",
-        detail: `هامش الربح الصافي المقدر (${params.netProfitMargin}%) ضئيل، وأي ارتفاع طفيف في أسعار المواد الخام أو تكاليف الخدمات قد يؤثر على الربحية.`
+        detail: `هامش الربح الصافي المقدر (${this.toArabicDigits(params.netProfitMargin)}٪) ضئيل، وأي ارتفاع طفيف في أسعار المواد الخام أو تكاليف الخدمات قد يؤثر على الربحية.`
       });
     }
 
@@ -398,7 +403,7 @@ const MadarCalculator = {
         level: "high",
         levelLabel: "مرتفع",
         color: "#78656B",
-        detail: `تحتاج إلى ${params.breakEvenDailyCustomers} عميلاً يومياً لتغطية التكاليف فقط، بينما التقدير الكلي ${params.dailyVisitors} عميل؛ هامش الأمان ضيق.`
+        detail: `تحتاج إلى ${this.toArabicDigits(params.breakEvenDailyCustomers)} عميلاً يومياً لتغطية التكاليف فقط، بينما التقدير الكلي ${this.toArabicDigits(params.dailyVisitors)} عميل؛ هامش الأمان ضيق.`
       });
     } else {
       risks.push({
@@ -421,7 +426,7 @@ const MadarCalculator = {
         level: "medium",
         levelLabel: "متوسط",
         color: "#8FA0AA",
-        detail: `الرواتب تشكل ${params.laborToRevenueRatio}% من الدخل، يُنصح بمراجعة كفاءة الورديات دون الإخلال بجودة الخدمة.`
+        detail: `الرواتب تشكل ${this.toArabicDigits(params.laborToRevenueRatio)}٪ من الدخل، يُنصح بمراجعة كفاءة الورديات دون الإخلال بجودة الخدمة.`
       });
     }
 
@@ -429,7 +434,7 @@ const MadarCalculator = {
   },
 
   /**
-   * توليد النصائح والتوصيات المخصصة والموجهة بدقة
+   * توليد النصائح والتوصيات المخصصة والموجهة بدقة بالأرقام العربية
    */
   generateRecommendations(params) {
     const recs = [];
@@ -438,14 +443,14 @@ const MadarCalculator = {
     recs.push({
       category: "عقد الإيجار والموقع",
       title: "التفاوض على فترة سماح كافية للتجهيز والترخيص",
-      text: `قبل توقيع عقد الإيجار في ${params.district ? params.district.name : "الحي المختار"}، احرص على طلب فترة سماح معفاة من الإيجار لا تقل عن 3 إلى 5 أشهر مخصصة لأعمال التجهيز واستخراج تراخيص منصة بلدي والدفاع المدني لتفادي سداد الإيجار قبل بدء البيع.`
+      text: `قبل توقيع عقد الإيجار في ${params.district ? params.district.name : "الحي المختار"}، احرص على طلب فترة سماح معفاة من الإيجار لا تقل عن ٣ إلى ٥ أشهر مخصصة لأعمال التجهيز واستخراج تراخيص منصة بلدي والدفاع المدني لتفادي سداد الإيجار قبل بدء البيع.`
     });
 
     // نصيحة رأس المال التأسيسي
     if (params.paybackMonths > 20) {
       recs.push({
         category: "النفقات التأسيسية والاستثمارية",
-        title: "ترشيد ميزانية الديكور والتشطيب بنسبة 15 إلى 20%",
+        title: "ترشيد ميزانية الديكور والتشطيب بنسبة ١٥ إلى ٢٠٪",
         text: "ينفق العديد من رواد الأعمال مبالغ طائلة في أعمال الديكور غير القابلة للاسترداد؛ ركّز الميزانية على المعدات التشغيلية المباشرة التي تحتفظ بقيمتها، واعتمد تصاميم عصرية بسيطة لتسريع استرداد رأس المال."
       });
     }
@@ -455,22 +460,22 @@ const MadarCalculator = {
       recs.push({
         category: "التسعير وهوامش الربحية",
         title: "رفع متوسط قيمة الفاتورة عبر المنتجات المكملة",
-        text: "صمم باقات مجمعة وقوائم منتجات مكملة ذات هوامش ربح مرتفعة عند نقطة البيع؛ فرفع متوسط الفاتورة بمقدار 5 إلى 8 ريالات ينعكس مباشرة كصافي ربح دون تكاليف تشغيلية إضافية."
+        text: "صمم باقات مجمعة وقوائم منتجات مكملة ذات هوامش ربح مرتفعة عند نقطة البيع؛ فرفع متوسط الفاتورة بمقدار ٥ إلى ٨ ريالات ينعكس مباشرة كصافي ربح دون تكاليف تشغيلية إضافية."
       });
     }
 
     // نصيحة إدارة السيولة
     recs.push({
       category: "إدارة السيولة النقدية",
-      title: "الاحتفاظ باحتياطي سيولة تشغيلية يغطي 3 إلى 6 أشهر",
-      text: "المشاريع الجديدة في السوق السعودي تحتاج عادة من 60 إلى 90 يوماً للوصول إلى وتيرة مبيعات مستقرة؛ تجنب استنزاف كامل أموالك في التأسيس واحتفظ باحتياطي للطوارئ ورواتب الأشهر الأولى."
+      title: "الاحتفاظ باحتياطي سيولة تشغيلية يغطي ٣ إلى ٦ أشهر",
+      text: "المشاريع الجديدة في السوق السعودي تحتاج عادة من ٦٠ إلى ٩٠ يوماً للوصول إلى وتيرة مبيعات مستقرة؛ تجنب استنزاف كامل أموالك في التأسيس واحتفظ باحتياطي للطوارئ ورواتب الأشهر الأولى."
     });
 
     // نصيحة التسويق والولاء
     recs.push({
       category: "التسويق وجذب العملاء",
       title: "برنامج ولاء ميسر وحضور موثق على خرائط جوجل",
-      text: "العميل المتكرر يوفر ما يصل إلى 80% من تكلفة الإعلانات الممولة. اهتم بتسجيل المتجر وتوثيقه فوراً على خرائط جوجل، وتفعيل برنامج ولاء رقمي مبسط برقم الجوال."
+      text: "العميل المتكرر يوفر ما يصل إلى ٨٠٪ من تكلفة الإعلانات الممولة. اهتم بتسجيل المتجر وتوثيقه فوراً على خرائط جوجل، وتفعيل برنامج ولاء رقمي مبسط برقم الجوال."
     });
 
     return recs;
@@ -509,7 +514,7 @@ const MadarCalculator = {
 
       timeline.push({
         month: m,
-        label: `شهر ${m}`,
+        label: `شهر ${this.toArabicDigits(m)}`,
         monthlyCash,
         cumulative: Math.round(cumulative),
         isBreakeven: isBreakevenThisMonth
@@ -520,24 +525,37 @@ const MadarCalculator = {
   },
 
   /**
-   * تنسيق العملة والأرقام بالريال السعودي
+   * تحويل أي أرقام إلى أرقام عربية مشرقية (٠-٩) وتحويل علامة النسبة إلى ٪
    */
-  formatSAR(amount) {
-    if (isNaN(amount) || amount === null || amount === undefined) return "0 ر.س";
-    return new Intl.NumberFormat("ar-SA", {
-      style: "decimal",
-      maximumFractionDigits: 0
-    }).format(Math.round(amount)) + " ر.س";
+  toArabicDigits(val) {
+    if (val === null || val === undefined) return "٠";
+    return String(val)
+      .replace(/[0-9]/g, d => '٠١٢٣٤٥٦٧٨٩'[d])
+      .replace(/%/g, '٪');
   },
 
   /**
-   * تنسيق الأرقام بدون رمز عملة
+   * تنسيق العملة والأرقام بالريال السعودي بالأرقام العربية الخالصة
    */
-  formatNumber(num) {
-    if (isNaN(num) || num === null || num === undefined) return "0";
-    return new Intl.NumberFormat("ar-SA", {
-      maximumFractionDigits: 1
-    }).format(num);
+  formatSAR(amount) {
+    if (isNaN(amount) || amount === null || amount === undefined) return "٠ ر.س";
+    const rounded = Math.round(Number(amount) || 0);
+    const withCommas = rounded.toLocaleString("en-US");
+    return this.toArabicDigits(withCommas) + " ر.س";
+  },
+
+  /**
+   * تنسيق الأرقام بدون رمز عملة بالأرقام العربية
+   */
+  formatNumber(num, maxFractionDigits = 1) {
+    if (isNaN(num) || num === null || num === undefined) return "٠";
+    let formatted;
+    if (maxFractionDigits === 0) {
+      formatted = Math.round(Number(num) || 0).toLocaleString("en-US");
+    } else {
+      formatted = (Number(num) || 0).toFixed(maxFractionDigits);
+    }
+    return this.toArabicDigits(formatted);
   }
 };
 
