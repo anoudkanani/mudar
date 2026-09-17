@@ -1,7 +1,8 @@
 # 📊 منصة «مُـدَار» | Mudar
 ### المنصة الذكية لدراسات الجدوى الاقتصادية التقديرية في السوق السعودي
 
- SDAIA Academy تم عمل المشرووع مع 
+ SDAIA Academy https://github.com/SDAIAAcademy
+ تم عمل المشرووع مع 
  من خلال ال vibe coding
 ---
 
